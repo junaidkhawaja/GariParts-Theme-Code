@@ -1,0 +1,143 @@
+.hide {
+    display: none;
+}
+
+.read_less_btn {
+    display: none;
+}
+
+.read_less_btn,
+.read_more_btn {
+    border: none;
+    background: transparent;
+    color: white;
+    text-decoration: underline;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 0;
+    cursor: pointer;
+    display: none !important;
+}
+
+.product_inner_div {
+    height: 80px;
+    overflow: hidden;
+}
+
+/* accordion style code */
+
+.accordion {
+    margin: 1rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.accordion-item {
+    border-bottom: 2px solid #F68E1E;
+    list-style: none !important;
+}
+
+/* Panel */
+.accordion-panel {
+    margin: 0;
+    padding-bottom: 0.8rem;
+    display: none;
+   font-weight: {{ settings.accordion_description_font_weight }};
+    color: {{ settings.accordion_description_color }};
+    font-size: clamp({{ settings.accordion_description_font_size_mobile }}px, ({{ settings.accordion_description_font_size }} / 1440) * 100vw, {{ settings.accordion_description_font_size }}px);
+    letter-spacing: 0px;
+    word-spacing: 0px;
+    font-family: 'Poppins', sans-serif;
+    
+}
+
+.accordion-panel p {
+    font-weight: {{ settings.accordion_description_font_weight }};
+    color: {{ settings.accordion_description_color }};
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp({{ settings.accordion_description_font_size_mobile }}px, ({{ settings.accordion_description_font_size }} / 1440) * 100vw, {{ settings.accordion_description_font_size }}px);
+}
+
+/* Active */
+.accordion-item.is-active .accordion-thumb::before {
+    transform: rotate(45deg);
+}
+
+
+
+/* faqs */
+.accordion-panel .page-content {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.accordion-panel .page-width {
+    padding: 0px 0px
+}
+
+.accordion-thumb {
+    font-family: 'Poppins', sans-serif;
+    font-weight: {{ settings.accordion_title_font_weight }};
+    color: {{ settings.accordion_title_color }};
+    font-size: clamp({{ settings.accordion_title_font_size_mobile }}px, ({{ settings.accordion_title_font_size }} / 1440) * 100vw, {{ settings.accordion_title_font_size }}px);
+}
+
+.accordion-thumb {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    padding: 8px 0px;
+}
+
+.acc_minus {
+    transition: transform 0.2s ease-out;
+    display: none;
+    width: 20px;
+}
+
+.acc_plus {
+    transition: transform 0.2s ease-out;
+    display: block;
+    width: 20px;
+}
+
+.accordion .is-active .acc_minus {
+    display: block;
+}
+
+.accordion .is-active .acc_plus {
+    display: none;
+}
+
+.acc_more,
+.acc_less {
+    border: none;
+    background: transparent;
+    color: #ffffff;
+    text-decoration: underline;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 0;
+    cursor: pointer;
+}
+
+.acc_less {
+    display: none;
+}
+
+/* .accordion-panel_des p {
+    height: 50px;
+    overflow: hidden;
+} */
+
+@media only screen and (max-width:767px) {
+    .product_inner_div {
+        height: 60px;
+    }
+
+    .read_less_btn,
+    .read_more_btn {
+        font-size: 14px;
+    }
+}
+

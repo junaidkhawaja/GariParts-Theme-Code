@@ -1,0 +1,1056 @@
+<div class="{{ section.id }}">
+  <div class="custom_appointment">
+    <div class="custom_appointment_container">
+      <div class="custom_appointment_heading">
+        <h2>{{ section.settings.heading }}</h2>
+      </div>
+      <div class="custom_appointment_form">
+        <div class="form_progress_bar">
+          <div class="form_progress_bar_step">
+            <h2>1. Auto Repair Services</h2>
+            <div class="form_progress_bar_div"></div>
+          </div>
+          <div class="form_progress_bar_step">
+            <h2>2. Your Availability</h2>
+            <div class="form_progress_bar_div"></div>
+          </div>
+          <div class="form_progress_bar_step">
+            <h2>3. Finish</h2>
+            <div class="form_progress_bar_div"></div>
+          </div>
+        </div>
+        {% form 'contact' %}
+          {{ form.errors | default_errors }}
+
+          <input type="hidden" name="contact[appointment]" value="Appointment">
+
+          <div class="form_step_1 animate__animated ">
+            <div class="custom_make">
+              <label for="make">Make</label>
+              <input type="text" name="contact[Make]" id="make" required class="first_inputs">
+
+              {% comment %}
+                <select id="custom_make" name="contact[Make]">
+                  {% for make in page.metafields.custom.car_make.value %}
+                    <option>{{ make }}</option>
+                  {% endfor %}
+                </select>
+              {% endcomment %}
+            </div>
+            <div class="custom_model">
+              <label for="model">Model</label>
+              <input type="text" name="contact[Model]" id="model" required class="first_inputs">
+              {% comment %}
+                <select id="custom_model" name="contact[Model]">
+                  {% for model in page.metafields.custom.car_model.value %}
+                    <option>{{ model }}</option>
+                  {% endfor %}
+                </select>
+              {% endcomment %}
+            </div>
+            <div class="custom_year">
+              <label for="model">Year</label>
+              <input type="text" name="contact[Year]" id="year" required class="first_inputs">
+              {% comment %}
+                <select id="custom_year" name="contact[Year]">
+                  {% for year in page.metafields.custom.year.value %}
+                    <option>{{ year }}</option>
+                  {% endfor %}
+                </select>
+              {% endcomment %}
+            </div>
+
+            <div class="request-type1">
+              <label for="request-type1">Services</label>
+              <select id="request-type1" name="contact[Services]">
+                {% for services in page.metafields.custom.services.value %}
+                  <option value="{{ services }}">{{ services }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="date_picker">
+              <label for="datepicker">Select a Date:</label>
+              <input type="text" id="datepicker" name="contact[order-date]" placeholder="Select Date" class="first_inputs">
+            </div>
+            <div class="time_picker">
+              <label for="timepicker">Select a Time: </label>
+              <input type="text" id="timepicker" name="contact[order-time]" placeholder="Select Time" class="first_inputs">
+            </div>
+          </div>
+          <div class="form_step_2 animate__animated ">
+            <div class="service_type">
+              <div class="contact-method">
+                <label class="label_heading" for="contact-method">How do you want us to contact you?</label>
+                <div class="service_option">
+                  <div class="home_based">
+                    <input
+                      type="radio"
+                      name="contact[contact_method]"
+                      value="home based service"
+                      id="home-based-service"
+                      class="second_inputs"
+                        
+                    ><label for="home-based-service">Home Based Service</label>
+                  </div>
+                  <div class="workshop">
+                    <input type="radio" name="contact[contact_method]" value="Workshop Service" id="Workshop-Service" class="second_inputs"
+                    ><label for="Workshop-Service">Workshop Service</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="full-name">
+              <label for="full-name">Full Name</label>
+              <input type="text" name="contact[Full_Name]" id="first-name" required class="second_inputs">
+            </div>
+
+            <div class="phone">
+              <label for="phone">Phone</label>
+              <input type="tel" name="contact[phone]" id="phone" required class="second_inputs">
+            </div>
+
+            <div class="email">
+              <label for="email">Email</label>
+              <input type="email" name="contact[email]" id="email" class="second_inputs">
+            </div>
+            <div class="address">
+              <label for="address">Address</label>
+              <input type="address" name="contact[address]" id="address" class="second_inputs">
+            </div>
+            <div class="location">
+              <label for="location">Select Your Near by GP Workshop</label>
+              <select id="location" name="contact[Branch]" class="second_inputs">
+                <option>GP Workshop 1 - PLOT 19/C 13th Commercial Street, D.H.A Phase II Extension</option>
+                <option>GP Workshop 2 - 38C Sunset Lane 1, Phase 2 Ext Defence Housing Authority,</option>
+              </select>
+            </div>
+
+            <div class="message">
+              <label for="message">Message</label>
+              <textarea name="contact[body]" id="message" class="second_inputs"></textarea>
+            </div>
+          </div>
+          <div class="submit">
+            <input type="submit" value="Submit" id="second_step_buttom" class="second_inputs">
+          </div>
+        {% endform %}
+        <div class="thanks_popup animate__animated animate__heartBeat">
+          {{ section.settings.thankyou_text }}
+        </div>
+        <div class="form_button_toggle">
+          <div class="form_button_back">
+            <h2>Back</h2>
+          </div>
+          <button class="form_button_next" id="step_changer_btn">
+            <h2>Next</h2>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .{{ section.id }} .thanks_popup{
+    display: none;
+    align-items: center;
+    justify-content: center;
+  }
+  .{{ section.id }} .thanks_popup p{
+    color: #f68e1e;
+    font-size: 40px;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+  }
+  .custom_appointment{
+    width: 100%;
+    background-color: {{section.settings.section_bg_color}};
+  }
+  .{{section.id}} .custom_appointment_container{
+    max-width:{{ section.settings.page_size }}px;
+    width:100%;
+    margin: 0 auto;
+    padding: {{ section.settings.padding_top }}px {{ section.settings.padding_right }}px {{ section.settings.padding_bottom }}px {{ section.settings.padding_left }}px;
+  }
+  .{{ section.id }} .custom_appointment_form{
+    max-width: {{ section.settings.page_size_form }}px;
+    margin: 0 auto;
+    width: 100%;
+    background: {{section.settings.section_bg_color_form}};
+    border: {{ section.settings.border_line }}px solid {{section.settings.border_color}};
+    box-shadow: 0px 1px 4px 0px {{section.settings.box_color}};
+    border-radius: 20px;
+    padding: {{ section.settings.inner_padding_tb }}px {{ section.settings.inner_padding_lr }}px;
+    position: relative;
+    overflow: hidden;
+  }
+  .form_step_1, .form_step_2{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  .custom_make, .request-type, .custom_model, .request-type1, .date_picker, .time_picker, .full-name, .phone, .email, .custom_year{
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+  }
+  .{{section.id}} input:focus-visible{
+    outline: none;
+    box-shadow: none;
+    outline-offset: unset;
+  }
+  .{{section.id}} select:focus-visible{
+    outline: none;
+    box-shadow: none;
+    outline-offset: unset;
+  }
+  .{{section.id}} textarea:focus-visible{
+    outline: none;
+    box-shadow: none;
+    outline-offset: unset;
+  }
+  .form_step_2{
+    display: none;
+  }
+  .{{ section.id }} input, .{{ section.id }} select{
+    width: 100%;
+    border: 1px solid #f68e1e;
+    border-radius: 5px;
+    padding: 5px;
+    color: {{ section.settings.input_fc }};
+    font-size: clamp({{ section.settings.input_fz_mb }}px, ({{section.settings.input_fz}} / 1440) * 100vw, {{ section.settings.input_fz }}px);
+    font-weight: {{ section.settings.input_fw }};
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: 0px;
+    font-family: 'Poppins', sans-serif;
+  }
+  .{{ section.id }} label{
+    color: {{ section.settings.label_fc }};
+    font-size: clamp({{ section.settings.label_fz_mb }}px, ({{section.settings.label_fz}} / 1440) * 100vw, {{ section.settings.label_fz }}px);
+    font-style: normal;
+    font-weight: {{ section.settings.label_fw }};
+    line-height: 1;
+    letter-spacing: 0px;
+    font-family: 'Poppins', sans-serif;
+    padding-bottom: 5px;
+  }
+  .form_button_toggle{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 20px;
+  }
+  .form_button_back, .form_button_next, .{{ section.id }} .submit{
+    border: 2px solid #F68E1E;
+    background: #132530;
+    padding: 12px 35px;
+    transition: .5s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+  .{{ section.id }} .submit{
+    display: none;
+  }
+  .form_button_back:hover, .form_button_next:hover, .{{ section.id }} .submit:hover{
+    background: #F68E1E;
+  }
+  .form_button_back h2, .form_button_next h2{
+    color: #f68e1e;
+    text-align: center;
+    font-family: Lato,sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
+  .form_button_back:hover > h2, .form_button_next:hover > h2, .{{ section.id }} .submit:hover > input{
+    color: #fff;
+  }
+  .{{ section.id }} .submit input{
+    color: #f68e1e;
+    text-align: center;
+    font-family: Lato,sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    background: transparent;
+    cursor: pointer;
+  }
+  .{{ section.id }} .message{
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+  }
+  .{{ section.id }} .message textarea{
+    width: 100%;
+    height: 100px;
+    border: 1px solid #f68e1e;
+    border-radius: 5px;
+    padding: 5px;
+    color: {{ section.settings.input_fc }};
+    font-size: clamp({{ section.settings.input_fz_mb }}px, ({{section.settings.input_fz}} / 1440) * 100vw, {{ section.settings.input_fz }}px);
+    font-weight: {{ section.settings.input_fw }};
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: 0px;
+    font-family: 'Poppins', sans-serif;
+  }
+  .{{ section.id }} .submit{
+    position: absolute;
+    right: {{ section.settings.inner_padding_lr }}px;
+    bottom: {{ section.settings.inner_padding_tb }}px;
+  }
+  .{{ section.id }} .service_type .label_heading{
+    font-size: clamp(14px, (30 / 1440) * 100vw, 30px);
+  }
+  .form_progress_bar{
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 25px;
+  }
+  .form_progress_bar_step{
+    width: 34%;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .form_progress_bar_div{
+    display: block !important;
+    width: 100%;
+    height: 10px;
+    border-radius: 10px;
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+    border: 1px solid #132530;
+    transition: 0.5s;
+    transition: box-shadow .6s ease-in;
+    <!-- box-shadow: 0 1px 3px 0 #000000cc; -->
+  }
+  .form_progress_bar_div.back_color{
+    box-shadow: inset 18em 0 0 0 #f68e1e;
+    <!-- background: #132530; -->
+  }
+  .form_progress_bar_step:nth-child(1) .form_progress_bar_div{
+    border-right: none;
+  }
+  .form_progress_bar_step:nth-child(2) .form_progress_bar_div{
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    border-right: none;
+    border-left: none;
+  }
+  .form_progress_bar_step:nth-child(3) .form_progress_bar_div{
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
+    border-left: none;
+  }
+  .form_progress_bar_step h2{
+    color: {{section.settings.bar_fc}};
+    font-size: clamp({{ section.settings.bar_fz_mb }}px, ({{section.settings.bar_fz}} / 1440) * 100vw, {{ section.settings.bar_fz }}px);
+    font-style: normal;
+    font-weight: {{section.settings.bar_fw}};
+    line-height: 1;
+    letter-spacing: 0px;
+    font-family: 'Poppins', sans-serif;
+    padding-bottom: 5px;
+  }
+  .custom_appointment_heading h2 p{
+    color: {{section.settings.heading_fc}};
+    font-size: clamp({{ section.settings.heading_fz_mb }}px, ({{section.settings.heading_fz}} / 1440) * 100vw, {{ section.settings.heading_fz }}px);
+    font-style: normal;
+    font-weight: {{section.settings.heading_fw}};
+    line-height: normal;
+    letter-spacing: 0px;
+    font-family: 'Poppins', sans-serif;
+    padding-bottom: {{ section.settings.heading_bottom }}px;
+    text-align: {{section.settings.heading_alignment}};
+  }
+  .ui-datepicker .ui-datepicker-prev, .ui-datepicker .ui-datepicker-next{
+    cursor: pointer !important;
+  }
+  .form_button_back{
+    visibility: hidden;
+  }
+  .service_option{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 23px;
+    margin: 5px 0 0px 0;
+  }
+  .service_type{
+    width: 100%;
+    grid-column: 1/4;
+  }
+  .home_based label, .workshop label{
+    padding-bottom: 0;
+    cursor: pointer;
+  }
+  .home_based input, .workshop input{
+    width: fit-content;
+    margin-top: 0;
+    cursor: pointer;
+  }
+  .home_based, .workshop{
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+    width: 32%;
+    justify-content: flex-end;
+  }
+  .address, .location{
+    display: none;
+    width: 100%;
+    grid-column: 1/4;
+  }
+  .message{
+    grid-column: 1/4;
+  }
+
+  @media only screen and (max-width:767px){
+    .{{section.id}} .custom_appointment_container{
+        padding: {{ section.settings.padding_top_mb }}px {{ section.settings.padding_right_mb }}px {{ section.settings.padding_bottom_mb }}px {{ section.settings.padding_left_mb }}px;
+    }
+    .custom_make, .request-type, .custom_model, .request-type1, .date_picker, .time_picker{
+      width: 100%;
+    }
+    .full-name, .phone, .email{
+      width: 100%;
+    }
+    .custom_appointment_heading h2 p{
+      padding-bottom: {{ section.settings.heading_bottom_mb }}px;
+    }
+    .form_progress_bar_div{
+      height: 12px;
+    }
+    .form_step_1, .form_step_2{
+      grid-template-columns: repeat(2,1fr);
+    }
+    .service_type{
+      grid-column: 1/3;
+    }
+    .address, .location{
+      grid-column: 1/3;
+    }
+    .message{
+      grid-column: 1/3;
+    }
+    .email{
+      grid-column: 1/3;
+    }
+    }
+
+  @media only screen and (max-width:600px){
+    .custom_make, .request-type, .custom_model, .request-type1, .date_picker, .time_picker{
+      width: 100%;
+    }
+    .home_based, .workshop{
+      width: 100%;
+    }
+    .service_option{
+      gap: 12px;
+    }
+    .form_step_1, .form_step_2{
+      grid-template-columns: repeat(1,1fr);
+    }
+    .service_type {
+      grid-column: 1;
+    }
+    .address, .location{
+      grid-column: 1;
+    }
+    .service_option{
+      flex-wrap: nowrap;
+    }
+    .message, .full-name, .phone, .email{
+      grid-column: 1
+    }
+  }
+
+button:disabled,
+button[disabled]{
+  border: none;
+  pointer-events: none;
+  background: #d1d4d7;
+}  
+button:disabled h2,
+button[disabled] h2{
+  color: white;
+} 
+
+.disabledSubmit{
+  background-color: #d1d4d7 !important;
+  border: none !important;
+  color: #fff !important;
+}
+.disabledSubmit input[type="submit"]{
+  color: #fff !important;
+}
+</style>
+
+<script>
+         document.querySelector('.form_button_next').addEventListener('click', () => {
+            document.querySelector('.form_step_1').style.display = "none";
+            document.querySelector('.form_step_2').style.display = "grid";
+            document.querySelector('.{{ section.id }} .submit').style.display = "block";
+            document.querySelector('.form_step_1').classList.add('animate__backOutLeft');
+            document.querySelector('.form_step_2').classList.add('animate__backInRight');
+            document.querySelector('.form_step_1').classList.remove('animate__backInLeft');
+            document.querySelector('.form_step_2').classList.remove('animate__backOutRight');
+            document.querySelector('.form_button_back').style.visibility = "visible";
+            document.querySelectorAll('.form_progress_bar_div')[1].classList.add('back_color');
+        });
+
+        document.querySelector('.form_button_back').addEventListener('click', () => {
+            document.querySelector('.form_step_2').style.display = "none";
+            document.querySelector('.{{ section.id }} .submit').style.display = "none";
+            document.querySelector('.form_step_1').style.display = "grid";
+            document.querySelector('.form_step_1').classList.remove('animate__backOutLeft');
+            document.querySelector('.form_step_2').classList.remove('animate__backInRight');
+            document.querySelector('.form_step_1').classList.add('animate__backInLeft');
+            document.querySelector('.form_step_2').classList.add('animate__backOutRight');
+            document.querySelector('.form_button_back').style.visibility = "hidden";
+            document.querySelectorAll('.form_progress_bar_div')[1].classList.remove('back_color');
+        });
+        // helper function 
+        const check_condition = (inputs) => {
+            let filled = true;
+            inputs.forEach((input) => {
+                if (input.value == 0) {
+                    filled = false;
+                }
+            });
+            return filled;
+        };
+
+        // form step one
+        let btn_submit = document.getElementById('step_changer_btn');
+        let inputs = document.querySelectorAll('.form_step_1 .first_inputs');
+        const stepOneInputHandler = () => {
+            if (check_condition(inputs)) {
+                btn_submit.removeAttribute('disabled');
+            } else {
+                btn_submit.setAttribute('disabled', "disabled");
+            }
+        }
+  
+        inputs.forEach(input => {
+            input.addEventListener('input', stepOneInputHandler);
+            input.addEventListener('change', stepOneInputHandler);
+        });
+
+        // step two 
+        let btn_submit_second = document.getElementById('second_step_buttom');
+        let inputs_second = document.querySelectorAll('.form_step_2 .second_inputs');
+        let submit = document.querySelector('.submit');
+
+
+        inputs_second.forEach(input => {
+            input.addEventListener('input', () => {
+                if (check_condition(inputs_second)) {
+                btn_submit_second.removeAttribute('disabled');
+                submit.classList.remove('disabledSubmit');
+            }
+            else {
+                btn_submit_second.setAttribute('disabled', "disabled");
+                submit.classList.add('disabledSubmit');
+            }
+            });
+        });
+
+        window.addEventListener('DOMContentLoaded', (event) => {
+           // form step one
+            stepOneInputHandler()
+            // form step one end
+
+            // form step two
+            if (check_condition(inputs_second)) {
+                btn_submit_second.removeAttribute('disabled');
+                conosle.log("condition true");
+                submit.classList.remove('disabledSubmit');
+            }
+            else {
+                btn_submit_second.setAttribute('disabled', "disabled");
+                submit.classList.add('disabledSubmit');
+            }
+            // form step two end
+
+  
+        });
+  
+        $(document).ready(function () {
+            // Disable previous dates in the DatePicker
+           $("#datepicker").datepicker({
+                minDate: 1, // Minimum date is today
+            });
+
+            $('#timepicker').timepicker({
+                minTime: '09:00 AM', // Minimum time is 9:00 AM
+                maxTime: '05:00 PM', // Maximum time is 5:00 PM
+            });
+  $('#datepicker, #timepicker').on('change', function() {
+  if ($(this).length != 0) {
+stepOneInputHandler()
+}
+  });
+        });
+
+
+
+
+
+        document.querySelector("#Workshop-Service").addEventListener('click', () => {
+                document.querySelector(".location").style.display = "block";
+                document.querySelector(".address").style.display = "none"
+                document.querySelector("#address").value = 'Blank'
+        })
+
+        document.querySelector("#home-based-service").addEventListener('click', () => {
+                document.querySelector(".address").style.display = "block";
+                document.querySelector("#address").value = '';
+                document.querySelector(".location").style.display = "none"
+        })
+
+        document.addEventListener('DOMContentLoaded', (event) => {
+            if (window.location.href.includes(contact_posted = true)) {
+                document.querySelector(".thanks_popup").style.display = "flex";
+                document.querySelector(".contact-form").style.display = "none";
+                document.querySelectorAll('.form_progress_bar_div').forEach((e) => {
+                    e.classList.add('back_color');
+                    document.querySelector('.form_button_toggle').style.display = "none";
+                })
+            } else {
+                document.querySelector(".thanks_popup").style.display = "none";
+                document.querySelectorAll('.form_progress_bar_div').forEach((e) => {
+                    e.classList.remove('back_color')
+                })
+            }
+        });
+
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.querySelector('.form_progress_bar_div').classList.add('back_color')
+            }, 300)
+        })
+</script>
+
+{% schema %}
+{
+  "name": "Appointment Form",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section setting"
+    },
+    {
+      "type": "number",
+      "id": "page_size",
+      "label": "Page Size",
+      "default": 1440
+    },
+    {
+      "type": "color",
+      "id": "section_bg_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 40
+      },
+      {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 40
+      },
+      {
+      "type": "range",
+      "id": "padding_left",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding Left",
+      "default": 40
+      },
+      {
+      "type": "range",
+      "id": "padding_right",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding Right",
+      "default": 40
+      },
+      {
+      "type": "range",
+      "id": "padding_left_mb",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding Left Mobile",
+      "default": 20
+      },
+      {
+      "type": "range",
+      "id": "padding_right_mb",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding Right Mobile",
+      "default": 20
+      },
+      {
+      "type": "range",
+      "id": "padding_top_mb",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding Top mobile",
+      "default": 40
+      },
+      {
+      "type": "range",
+      "id": "padding_bottom_mb",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding Bottom Mobile",
+      "default": 40
+      },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "range",
+      "id": "heading_fz",
+      "min": 6,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Font size",
+      "default": 35
+    },
+    {
+      "type": "range",
+      "id": "heading_fw",
+      "min": 100,
+      "max": 900,
+      "step": 100,
+      "unit": "px",
+      "label": "Font Weight",
+      "default": 600
+    },
+    {
+      "type": "color",
+      "id": "heading_fc",
+      "label": "Color",
+      "default": "#231f20"
+    },
+    {
+      "type": "range",
+      "id": "heading_fz_mb",
+      "min": 6,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Font size Mobile",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "heading_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading Bottom Space",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "heading_bottom_mb",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading Bottom Space",
+      "default": 20
+    },
+    {
+      "type": "select",
+      "id": "heading_alignment",
+      "label": "Heading Alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "header",
+      "content": "Form setting"
+    },
+    {
+      "type": "number",
+      "id": "page_size_form",
+      "label": "Page Size",
+      "default": 900
+    },
+    {
+      "type": "color",
+      "id": "section_bg_color_form",
+      "label": "Form Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border Color",
+      "default": "#f68e1e"
+    },
+    {
+      "type": "range",
+      "id": "border_line",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "unit": "px",
+      "label": "Border Thickness",
+      "default": 1
+    },
+    {
+      "type": "color",
+      "id": "box_color",
+      "label": "Box Shadow Color",
+      "default": "#f68e1e"
+    },
+    {
+      "type": "range",
+      "id": "inner_padding_tb",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Form Inner Padding Top-Bottom",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "inner_padding_lr",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Form Inner Padding Left-Right",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Progress Bar"
+    },
+    {
+      "type": "text",
+      "id": "step_title1",
+      "label": "Step Titles 1",
+      "default": "1. Auto Repair Services"
+    },
+    {
+      "type": "text",
+      "id": "step_title2",
+      "label": "Step Titles 2",
+      "default": "2. Your Availability"
+    },
+    {
+      "type": "text",
+      "id": "step_title3",
+      "label": "Step Titles 3",
+      "default": "3. Finish"
+    },
+      {
+      "type": "range",
+      "id": "bar_fz",
+      "min": 6,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Font size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "bar_fw",
+      "min": 100,
+      "max": 900,
+      "step": 100,
+      "unit": "px",
+      "label": "Font Weight",
+      "default": 600
+    },
+    {
+      "type": "color",
+      "id": "bar_fc",
+      "label": "Color",
+      "default": "#231f20"
+    },
+    {
+      "type": "range",
+      "id": "bar_fz_mb",
+      "min": 6,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Font size Mobile",
+      "default": 9
+    },
+    {
+      "type": "header",
+      "content": "Field Label"
+    },
+      {
+      "type": "range",
+      "id": "label_fz",
+      "min": 6,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Font size",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "label_fw",
+      "min": 100,
+      "max": 900,
+      "step": 100,
+      "unit": "px",
+      "label": "Font Weight",
+      "default": 600
+    },
+    {
+      "type": "color",
+      "id": "label_fc",
+      "label": "Color",
+      "default": "#231f20"
+    },
+    {
+      "type": "range",
+      "id": "label_fz_mb",
+      "min": 6,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Font size Mobile",
+      "default": 14
+    },
+    {
+      "type": "header",
+      "content": "Field Input"
+    },
+      {
+      "type": "range",
+      "id": "input_fz",
+      "min": 6,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Font size",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "input_fw",
+      "min": 100,
+      "max": 900,
+      "step": 100,
+      "unit": "px",
+      "label": "Font Weight",
+      "default": 600
+    },
+    {
+      "type": "color",
+      "id": "input_fc",
+      "label": "Color",
+      "default": "#231f20"
+    },
+    {
+      "type": "range",
+      "id": "input_fz_mb",
+      "min": 6,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Font size Mobile",
+      "default": 12
+    },
+    {
+      "type": "richtext",
+      "id": "thankyou_text",
+      "label": "Thankyou Text"
+    }
+
+
+
+  ],
+  "presets": [
+  {
+    "name": "Appointment Form"
+
+  }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

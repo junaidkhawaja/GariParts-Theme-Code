@@ -1,0 +1,241 @@
+<!-- Section Name: custom-sub-banner.liquid -->
+
+<div id="sid-{{ section.id }}">
+  <div class="custom_sub_banner">
+    <div class="custom_sub_banner_container">
+      <div class="custom_banner_block">
+        {% for block in section.blocks %}
+          <div class="block_container_box">
+            <a href="{{ block.settings.box_link }}">
+              <img src="{{ block.settings.block_image | img_url: 'master' }}">
+            </a>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  #sid-{{ section.id }} .custom_sub_banner{
+    width: 100%;
+    background: {{ section.settings.background_color }};
+  }
+  #sid-{{ section.id }} .custom_sub_banner_container{
+    max-width: {{ section.settings.page_size }}px;
+    width:100%; margin: 0 auto;
+    padding: {{ section.settings.top_padding }}px {{ section.settings.right_padding }}px {{ section.settings.bottom_padding }}px {{ section.settings.left_padding }}px;
+  }
+
+  .block_container_box{
+    display: flex;
+    width: 32%;
+    height: 300px;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 20px;
+    background: {{section.settings.block_box_bg_clr}};
+  }
+
+
+
+  .block_container_box img{
+    width:100%;
+  }
+  .custom_banner_block{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  @media only screen and (max-width: 767px){
+    #sid-{{ section.id }} .custom_sub_banner_container{
+      padding: {{ section.settings.top_padding_mb }}px {{ section.settings.right_padding_mb }}px {{ section.settings.bottom_padding_mb }}px {{ section.settings.left_padding_mb }}px;
+    }
+  }
+</style>
+{% schema %}
+  {
+    "name": "Sub Banner",
+    "settings": [
+      {
+  "type": "header",
+  "content": "Section Settings"
+},
+{
+  "type": "number",
+  "id": "page_size",
+  "label": "Section Container Size",
+  "default": 1440
+},
+{
+  "type": "color",
+  "id": "background_color",
+  "label": "Background Color",
+  "default": "#ffffff"
+},
+{
+  "type": "range",
+  "id": "top_padding",
+  "min": 0,
+  "max": 100,
+  "step": 1,
+  "unit": "px",
+  "label": "Top Padding",
+  "default": 80
+},
+{
+  "type": "range",
+  "id": "bottom_padding",
+  "min": 0,
+  "max": 100,
+  "step": 1,
+  "unit": "px",
+  "label": "Bottom Padding",
+  "default": 100
+},
+{
+  "type": "range",
+  "id": "right_padding",
+  "min": 0,
+  "max": 100,
+  "step": 1,
+  "unit": "px",
+  "label": "Right Padding",
+  "default":100
+},
+{
+  "type": "range",
+  "id": "left_padding",
+  "min": 0,
+  "max": 100,
+  "step": 1,
+  "unit": "px",
+  "label": "Left Padding",
+  "default": 100
+},
+{
+  "type": "range",
+  "id": "top_padding_mb",
+  "min": 0,
+  "max": 100,
+  "step": 1,
+  "unit": "px",
+  "label": "Top Padding Mobile",
+  "default": 40
+},
+{
+  "type": "range",
+  "id": "bottom_padding_mb",
+  "min": 0,
+  "max": 100,
+  "step": 1,
+  "unit": "px",
+  "label": "Bottom Padding Mobile",
+  "default": 40
+},
+{
+  "type": "range",
+  "id": "right_padding_mb",
+  "min": 0,
+  "max": 100,
+  "step": 1,
+  "unit": "px",
+  "label": "Right Padding Mobile",
+  "default":20
+},
+{
+  "type": "range",
+  "id": "left_padding_mb",
+  "min": 0,
+  "max": 100,
+  "step": 1,
+  "unit": "px",
+  "label": "Left Padding Mobile",
+  "default": 20
+},
+{
+"type": "color",
+"id": "block_box_bg_clr",
+"label": "Box Background Color",
+"default": "#fd7a30"
+},
+
+{
+  "type": "richtext",
+  "id": "heading",
+  "label": "Heading"
+},
+{
+"type": "range",
+"id": "main_heading_fz",
+"min": 6,
+"max": 100,
+"step": 1,
+"unit": "px",
+"label": "Font Size",
+"default": 36
+},
+{
+"type": "range",
+"id": "main_heading_fw",
+"min": 100,
+"max": 900,
+"step": 100,
+"unit": "px",
+"label": "Font Weight",
+"default": 600
+},
+{
+"type": "color",
+"id": "main_heading_fc",
+"label": "Font Color",
+"default": "#f68e1e"
+},
+{
+"type": "range",
+"id": "main_heading_fz_mb",
+"min": 6,
+"max": 100,
+"step": 1,
+"unit": "px",
+"label": "Font Size Mobile",
+"default": 25
+}
+    ],
+    "blocks":[
+    {
+        "name": "Box",
+      "type": "block",
+      "settings":[
+        {
+          "type": "image_picker",
+          "id": "block_image",
+          "label": "Image"
+        },
+        {
+          "type": "url",
+          "id": "box_link",
+          "label": "Box link"
+        }
+
+
+      ]
+    }
+  ],
+    "presets": [
+    {
+      "name": "Sub Banner"
+
+    }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

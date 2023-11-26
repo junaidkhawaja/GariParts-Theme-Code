@@ -1,0 +1,465 @@
+<!-- Section Name: popup-news-letter.liquid -->
+
+<div id="sid-{{ section.id }}">
+  <div class="custom_news_letter" id="custom_news_letter_main_container">
+    <div class="custom_news_letter_container">
+      <div class="custom_main_news">
+        <div class="custom_close">
+          <img src="https://cdn.shopify.com/s/files/1/0809/2614/6865/files/close_1.png?v=1698672327">
+        </div>
+        {% if section.settings.main_image != blank %}
+          <div class="main_image">
+            <img src="{{ section.settings.main_image | img_url: 'master' }}">
+          </div>
+        {% endif %}
+        <div class="custom_form_container">
+          <div class="custom_details">
+            <div class="popup_heading">
+              <h2>{{ section.settings.heading }}</h2>
+            </div>
+            <div class="popup_para">
+              <h3>{{ section.settings.para }}</h3>
+            </div>
+          </div>
+          <div class="custom_subscribe_form">
+            <div class="news_input">
+              {%- form 'customer', id: 'ContactFooter', class: 'footer__newsletter newsletter-form' -%}
+                <input type="hidden" name="contact[tags]" value="newsletter">
+                <div class="newsletter-form__field-wrapper">
+                  <div class="field">
+                    <input
+                      id="NewsletterForm--{{ section.id }}"
+                      type="email"
+                      name="contact[email]"
+                      class="field__input popup_newsletter_email"
+                      value="{{ form.email }}"
+                      aria-required="true"
+                      autocorrect="off"
+                      autocapitalize="off"
+                      autocomplete="email"
+                      {% if form.errors %}
+                        autofocus
+                        aria-invalid="true"
+                        aria-describedby="ContactFooter-error"
+                      {% elsif form.posted_successfully? %}
+                        aria-describedby="ContactFooter-success"
+                      {% endif %}
+                      placeholder="Email Address"
+                      required
+                    >
+
+                    <button
+                      type="submit"
+                      class="newsletter-form__button field__button"
+                      name="commit"
+                      id="Subscribe"
+                      aria-label="{{ 'newsletter.button_label' | t }}"
+                    >
+                      Submit
+                      {% render 'icon-arrow' %}
+                    </button>
+                  </div>
+                  {%- if form.errors -%}
+                    <small class="newsletter-form__message form__message" id="ContactFooter-error">
+                      {%- render 'icon-error' -%}
+                      {{- form.errors.translated_fields.email | capitalize }}
+                      {{ form.errors.messages.email -}}
+                    </small>
+                  {%- endif -%}
+                </div>
+                {%- if form.posted_successfully? -%}
+                  <h3
+                    class="newsletter-form__message newsletter-form__message--success form__message"
+                    id="ContactFooter-success"
+                    tabindex="-1"
+                    autofocus
+                  >
+                    {% render 'icon-success' -%}
+                    {{- 'newsletter.success' | t }}
+                  </h3>
+                {%- endif -%}
+              {%- endform -%}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<style>
+  #sid-{{ section.id }} .custom_news_letter{
+    background: {{ section.settings.background_color }}cc;
+    position: fixed;
+    z-index: 9;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    display: none;
+    padding: {{ section.settings.top_padding }}px {{ section.settings.right_padding }}px {{ section.settings.bottom_padding }}px {{ section.settings.left_padding }}px;
+  }
+  #sid-{{ section.id }} .custom_news_letter_container{
+    max-width: {{ section.settings.page_size }}px;
+    width:100%; margin: 0 auto;
+    background: #fff;
+    border: 2px solid #f8a954;
+    box-shadow: 0 0 10px 0 #f8a954;
+  }
+  #sid-{{ section.id }} img{
+    width: 100%;
+  }
+   #sid-{{ section.id }} .main_image{
+    display: flex;
+    width: 50%;
+  }
+  #sid-{{ section.id }} .custom_form_container{
+    display: flex;
+    width: 50%;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 15px;
+  }
+  #sid-{{ section.id }} .custom_main_news{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  #sid-{{ section.id }} .custom_close{
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    display: flex;
+    cursor: pointer;
+  }
+  #sid-{{ section.id }} .custom_details{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+  }
+  #sid-{{ section.id }} .popup_heading h2 p{
+    color: {{ section.settings.heading_fc }};
+    font-family: Poppins;
+    font-size: clamp({{ section.settings.heading_fz_mb }}px, ({{ section.settings.heading_fz }} / 1440) * 100vw, {{ section.settings.heading_fz }}px);
+    font-style: normal;
+    font-weight: {{ section.settings.heading_fw }};
+    line-height: normal;
+    letter-spacing: -1.2px;
+    text-align: center;
+  }
+  #sid-{{ section.id }} .popup_para h3 p{
+    color: {{ section.settings.para_fc }};
+    font-family: Poppins;
+    font-size: clamp({{ section.settings.para_fz_mb }}px, ({{ section.settings.para_fz }} / 1440) * 100vw, {{ section.settings.para_fz }}px);
+    font-style: normal;
+    font-weight: {{ section.settings.para_fw }};
+    line-height: normal;
+    letter-spacing: -1.2px;
+    text-align: center;
+  }
+  #sid-{{ section.id }} .newsletter-form__field-wrapper {
+    width: 100%;
+    max-width: 100%;
+  }
+  #sid-{{ section.id }} .custom_subscribe_form{
+    width: 100%;
+    max-width: 100%;
+  }
+  #sid-{{ section.id }} .field{
+    flex-direction: column;
+    width: 100%;
+    gap: 20px;
+  }
+  #sid-{{ section.id }} .field__button{
+    position: relative;
+    width: 100%;
+  }
+  #sid-{{ section.id }} .field:after, #sid-{{ section.id }} .field:before{
+    content: none !important;
+  }
+  #sid-{{ section.id }} .newsletter-form__field-wrapper .field__input {
+    border-radius: 0px;
+    background-color: transparent;
+    color: #132530;
+    border: 1px solid #f68e1e;
+    box-shadow: 0 0 5px 0 #f68e1e;
+  }
+  #sid-{{ section.id }} .newsletter-form__button .icon {
+    display: none;
+  }
+  #sid-{{ section.id }} .field__button{
+    color: #f68e1e;
+    text-align: center;
+    font-family: Lato,sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    border: 2px solid #F68E1E;
+    background: rgb(19 37 48);
+    padding: 12px 18px;
+    transition: .5s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  #sid-{{ section.id }} .field__button:hover {
+    background: #F68E1E;
+    color: #fff;
+  }
+
+  @media only screen and (max-width: 767px){
+    #sid-{{ section.id }} .custom_news_letter{
+      padding: {{ section.settings.top_padding_mb }}px {{ section.settings.right_padding_mb }}px {{ section.settings.bottom_padding_mb }}px {{ section.settings.left_padding_mb }}px;
+    }
+    #sid-{{ section.id }} .custom_main_news{
+      flex-direction: column;
+    }
+    #sid-{{ section.id }} .main_image, #sid-{{ section.id }} .custom_form_container{
+      width: 100%;
+    }
+    #sid-{{ section.id }} .main_image{
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  let custom_letter = document.getElementById('custom_news_letter_main_container');
+  let popup_email = document.getElementById('NewsletterForm--{{ section.id }}');
+
+  document.querySelector('.custom_close').addEventListener('click', () => {
+    custom_letter.style.display = "none";
+       createCookie("popupEmail",true,1);
+        console.log(readCookie("popupEmail"));
+  });
+
+
+  let Subscribe = document.getElementById('Subscribe').addEventListener('click',()=>{
+    if(popup_email.value != ''){
+      createCookie("popupEmail",true,30);
+      console.log(readCookie("popupEmail"));
+      custom_letter.style.display = "none";
+    }
+  });
+
+  window.addEventListener('load', (event) => {
+    if(readCookie('popupEmail')){
+      custom_letter.style.display = "none";
+    }
+    else{
+        custom_letter.style.display = "flex";
+    }
+  });
+</script>
+
+{% schema %}
+  {
+    "name": "Popup News Letter",
+    "settings": [
+      {
+  "type": "header",
+  "content": "Section Settings"
+},
+{
+  "type": "number",
+  "id": "page_size",
+  "label": "Section Container Size",
+  "default": 900
+},
+{
+  "type": "color",
+  "id": "background_color",
+  "label": "Background Color",
+  "default": "#ffffff"
+},
+{
+  "type": "range",
+  "id": "top_padding",
+  "min": 0,
+  "max": 100,
+  "step": 1,
+  "unit": "px",
+  "label": "Top Padding",
+  "default": 40
+},
+{
+  "type": "range",
+  "id": "bottom_padding",
+  "min": 0,
+  "max": 100,
+  "step": 1,
+  "unit": "px",
+  "label": "Bottom Padding",
+  "default": 40
+},
+{
+  "type": "range",
+  "id": "right_padding",
+  "min": 0,
+  "max": 100,
+  "step": 1,
+  "unit": "px",
+  "label": "Right Padding",
+  "default":40
+},
+{
+  "type": "range",
+  "id": "left_padding",
+  "min": 0,
+  "max": 100,
+  "step": 1,
+  "unit": "px",
+  "label": "Left Padding",
+  "default": 40
+},
+{
+  "type": "range",
+  "id": "top_padding_mb",
+  "min": 0,
+  "max": 100,
+  "step": 1,
+  "unit": "px",
+  "label": "Top Padding Mobile",
+  "default": 20
+},
+{
+  "type": "range",
+  "id": "bottom_padding_mb",
+  "min": 0,
+  "max": 100,
+  "step": 1,
+  "unit": "px",
+  "label": "Bottom Padding Mobile",
+  "default": 20
+},
+{
+  "type": "range",
+  "id": "right_padding_mb",
+  "min": 0,
+  "max": 100,
+  "step": 1,
+  "unit": "px",
+  "label": "Right Padding Mobile",
+  "default":20
+},
+{
+  "type": "range",
+  "id": "left_padding_mb",
+  "min": 0,
+  "max": 100,
+  "step": 1,
+  "unit": "px",
+  "label": "Left Padding Mobile",
+  "default": 20
+},
+{
+  "type": "image_picker",
+  "id": "main_image",
+  "label": "Image"
+},
+{
+  "type": "richtext",
+  "id": "heading",
+  "label": "Heading"
+},
+{
+"type": "range",
+"id": "heading_fz",
+"min": 6,
+"max": 100,
+"step": 1,
+"unit": "px",
+"label": "Font Size",
+"default": 40
+},
+{
+"type": "range",
+"id": "heading_fw",
+"min": 100,
+"max": 900,
+"step": 100,
+"unit": "px",
+"label": "Font Weight",
+"default": 600
+},
+{
+"type": "color",
+"id": "heading_fc",
+"label": "Font Color",
+"default": "#F68E1E"
+},
+{
+"type": "range",
+"id": "heading_fz_mb",
+"min": 6,
+"max": 100,
+"step": 1,
+"unit": "px",
+"label": "Font Size Mobile",
+"default": 24
+},
+{
+  "type": "richtext",
+  "id": "para",
+  "label": "Paragraph"
+},
+{
+"type": "range",
+"id": "para_fz",
+"min": 6,
+"max": 100,
+"step": 1,
+"unit": "px",
+"label": "Font Size",
+"default": 16
+},
+{
+"type": "range",
+"id": "para_fw",
+"min": 100,
+"max": 900,
+"step": 100,
+"unit": "px",
+"label": "Font Weight",
+"default": 600
+},
+{
+"type": "color",
+"id": "para_fc",
+"label": "Font Color",
+"default": "#132530"
+},
+{
+"type": "range",
+"id": "para_fz_mb",
+"min": 6,
+"max": 100,
+"step": 1,
+"unit": "px",
+"label": "Font Size Mobile",
+"default": 14
+}
+
+
+
+    ],
+    "presets": [
+    {
+      "name": "Subscriber Popup"
+
+    }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

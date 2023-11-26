@@ -1,0 +1,186 @@
+
+ <head>
+    {{ 'accordion.css' | asset_url | stylesheet_tag }}
+   <script src="{{ 'accordion.js' | asset_url }}" defer="defer"></script>
+ </head>
+
+ <div class="custom-faqs-container-main">
+   <div class="custom-faqs-container"> 
+    
+     
+  <div class="custom-faqs-heading"> 
+    <h1>
+            {{ section.settings.custom_faqs_heading }}
+          </h1>
+  </div>
+<ul class="accordion">
+ {% for block in section.blocks %}
+<li class="accordion-item">
+<h3 class="accordion-thumb"><div><img src="{{ block.settings.plus | img_url: 'master' }}" class="acc_plus"/><img src="{{ block.settings.minus | img_url: 'master' }}" class="acc_minus"/></div>{{ block.settings.custom_faq_question }}</h3>
+<h4 class="accordion-panel"> {{ block.settings.custom_faq_answer }}</h4>
+</li>
+    {% endfor %}
+</ul>
+
+  </div>
+ </div>
+ <style>
+   .custom-faqs-container{
+     max-width: 800px;
+     margin: 0 auto;
+     padding: 40px 20px
+   }
+   .custom-faqs-heading h1{
+              color:{{ section.settings.custom_faqs_heading_color }};
+              font-size:{{ section.settings.custom_faqs_heading_font_size_desktop }}px;
+              font-weight:{{ section.settings.custom_faqs_heading_font_weight }};
+              font-family: 'Poppins', sans-serif;
+              text-align:center;
+              margin-bottom: {{ section.settings.custom_faqs_heading_margin_bottom_desktop }}px;
+            }
+           .custom-faqs-heading strong{
+              position:relative;
+              font-weight:{{ section.settings.custom_faqs_heading_font_weight }};
+             }
+
+        .custom-faqs-heading h1 p strong:after {
+
+                width: 100%;
+                height: {{ section.settings.custom_faqs_heading_underline_thickness }}px;
+                display: block;
+                position: absolute;
+                content: '';
+                background-color: {{ section.settings.custom_faqs_heading_underline_color }};
+                right: 0px;
+                bottom:-1px;
+        }
+ </style>
+{% schema %}
+  {
+    "name": "Custom Faqs",
+    "settings": [
+      {
+        "type": "richtext",
+        "id": "custom_faqs_heading",
+        "label": "FAQS Heading Text"
+        },
+        {
+        "type": "color",
+        "id": "custom_faqs_heading_color",
+        "label": "FAQS Heading Color",
+        "default": "#F68E1E"
+        },
+        {
+        "type": "range",
+        "id": "custom_faqs_heading_font_size_desktop",
+        "min": 1,
+        "max": 72,
+        "step": 1,
+        "unit": "px",
+        "label": "FAQS Heading Font Size For Desktop",
+        "default": 40
+        },
+        {
+        "type": "range",
+        "id": "custom_faqs_heading_font_size_tablet",
+        "min": 1,
+        "max": 72,
+        "step": 1,
+        "unit": "px",
+        "label": "FAQS Heading Font Size For Tablet",
+        "default": 30
+        },
+        {
+        "type": "range",
+        "id": "custom_faqs_heading_font_size_mobile",
+        "min": 1,
+        "max": 72,
+        "step": 1,
+        "unit": "px",
+        "label": "FAQS Heading Font Size For Mobile",
+        "default": 20
+        },
+        {
+        "type": "range",
+        "id": "custom_faqs_heading_font_weight",
+        "min": 100,
+        "max": 900,
+        "step": 100,
+        "unit": "px",
+        "label": "FAQS Heading Font Weight",
+        "default": 600
+        },
+
+        {
+        "type": "range",
+        "id": "custom_faqs_heading_underline_thickness",
+        "min": 1,
+        "max": 10,
+        "step": 1,
+        "unit": "px",
+        "label": "FAQS Heading Underline Thickness",
+        "default": 4
+        },
+        {
+        "type": "color",
+        "id": "custom_faqs_heading_underline_color",
+        "label": "FAQS Heading Underline Color",
+        "default": "#231F20"
+        },
+        {
+        "type": "range",
+        "id": "custom_faqs_heading_margin_bottom_desktop",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "FAQS Heading Margin Bottom For Desktop",
+        "default": 40
+        },
+        {
+        "type": "range",
+        "id": "custom_faqs_heading_margin_bottom_mobile",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "FAQS Heading Margin Bottom For Mobile",
+        "default": 20
+        }
+    ],
+       "blocks"  : [
+             {
+                 "type":"accordions",
+                 "name":"Accordions",
+                 "settings":[
+                          {
+                              "type": "image_picker",
+                              "id": "plus",
+                              "label": "Plus Icon"
+                          },
+                          {
+                              "type": "image_picker",
+                              "id": "minus",
+                              "label": "Minus Icon"
+                          },
+                            {
+                              "type": "richtext",
+                              "id": "custom_faq_question",
+                              "label": "FAQs Questions"
+                             },
+                            {
+                              "type": "richtext",
+                              "id": "custom_faq_answer",
+                              "label": "FAQs Answers"
+                             }
+                             ]
+
+               }
+               ],
+  "presets": [
+    {
+      "name": "Custom Faqs"
+    }
+  ]
+  }
+{% endschema %}

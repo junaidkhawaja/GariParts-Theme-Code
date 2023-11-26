@@ -1,0 +1,739 @@
+<div class="{{ section.id }}-contact">
+  <div class="contactus_section">
+    <div class="contactus_container">
+      <div class="contactus_heading_area">
+        <h1 class="contactus_heading">{{ section.settings.contactus_heading }}</h1>
+        <div class="contactus_paragraph">{{ section.settings.contactus_paragraph }}</div>
+      </div>
+
+      <div class="schedule_content_area">
+        <div class="schedule_heading">{{ section.settings.schedule_heading }}</div>
+      </div>
+
+      <hr class="line_break">
+
+      <div class="location_content_area">
+        <div class="location_icon">
+          <img src="{{ section.settings.location_icon | img_url: 'master' }}">
+        </div>
+        <div class="location_text_area">
+          <div class="location_title">{{ section.settings.location_title }}</div>
+          <div class="location_description">{{ section.settings.location_description }}</div>
+        </div>
+      </div>
+      <div class="inquiries_blocks_container">
+        {% for block in section.blocks %}
+          <div class="contactus_inquiries_blocks">
+            <div class="inquiries_icon">
+              <img src="{{ block.settings.inquiries_icon | img_url: 'master' }}">
+            </div>
+            <div class="inquiries_text_area">
+              <div class="inquiries_title">{{ block.settings.inquiries_title }}</div>
+              <div class="inquiries_description">{{ block.settings.inquiries_description }}</div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+<style>
+        .{{ section.id }}-contact .contactus_section{
+         background-color:{{ section.settings.contactus_container_bg_color }};
+         width: 100%;
+         }
+
+         .{{ section.id }}-contact .contactus_container{
+          padding:{{ section.settings.main_padding_top }}px {{ section.settings.main_padding_right }}px {{ section.settings.main_padding_bottom }}px {{ section.settings.main_padding_left }}px;
+          width: 100%;
+
+          max-width: 500px;
+
+
+     }
+     .{{ section.id }}-contact .schedule_content_area{
+           line-height: 100%;
+       }
+
+       .{{ section.id }}-contact .contactus_heading_area{
+          text-align:left;
+          margin-bottom: {{ section.settings.contactus_heading_area }};
+
+       }
+
+       .{{ section.id }}-contact .contactus_heading{
+         color:{{ section.settings.heading_color }};
+         font-size:{{ section.settings.heading_font_size }}px;
+         font-weight:{{ section.settings.heading_font_weight }};
+         margin-bottom:{{ section.settings.heading_margin_bottom }}px;
+         font-family: poppins;
+         line-height: 110%;
+         text-transform: capitalize;
+         letter-spacing: 0px;
+       }
+
+       .{{ section.id }}-contact .contactus_paragraph{
+         color:{{ section.settings.paragraph_color }};
+         font-size:{{ section.settings.paragraph_font_size }}px;
+         font-weight:{{ section.settings.paragraph_font_weight }};
+         font-family: Lato;
+         line-height: 120%;
+       }
+
+       .{{ section.id }}-contact .contactus_inquiries_blocks{
+        text-align:left;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin-bottom: {{ section.settings.inquiries_blocks_margin_bottom }}px;
+        align-items: center;
+       }
+
+       .{{ section.id }}-contact .line_break{
+         background-color:#0067d7;
+         margin: 30px 0px;
+
+       }
+
+       .{{ section.id }}-contact  .contactus_heading_area{
+         margin-bottom: {{ section.settings.heading_area_margin_bottom }}px;
+         }
+
+       .{{ section.id }}-contact .location_content_area{
+         display: flex;
+         flex-wrap: wrap;
+         gap: 15px;
+         align-items: flex-start;
+       }
+
+         .{{ section.id }}-contact .location_title{
+            color:{{ section.settings.location_title_color }};
+            font-size:{{ section.settings.location_title_font_size }}px;
+            font-weight:{{ section.settings.location_title_font_weight }};
+            font-family: poppins;
+        }
+
+        .{{ section.id }}-contact .location_description{
+            color:{{ section.settings.location_description_color }};
+            font-size:{{ section.settings.location_description_font_size }}px;
+            font-weight:{{ section.settings.location_description_font_weight }};
+            font-family: lato;
+        }
+
+
+       .{{ section.id }}-contact .inquiries_title{
+         color:{{ section.settings.inquiries_title_color }};
+         font-size:{{ section.settings.inquiries_title_font_size }}px;
+         font-weight:{{ section.settings.inquiries_title_font_weight }};
+         font-family: Poppins;
+         line-height: normal;
+       }
+
+
+     .{{ section.id }}-contact  .inquiries_text_area{
+       display: flex;
+       gap: 70px;
+       }
+
+       .{{ section.id }}-contact  .schedule_heading{
+         color:{{ section.settings.schedule_heading_title_color }};
+         font-size:{{ section.settings.schedule_heading_font_size }}px;
+         font-weight:{{ section.settings.schedule_heading_font_weight }};
+         font-family: Lato;
+         }
+
+
+       .{{ section.id }}-contact .inquiries_description{
+         color:{{ section.settings.inquiries_description_color }};
+         font-size:{{ section.settings.inquiries_description_font_size }}px;
+         font-weight:{{ section.settings.inquiries_description_font_weight }};
+         line-height: 115%;
+         font-family: Lato;
+         text-align: center;
+       }
+
+             .{{ section.id }}-contact .inquiries_description a{
+        color:{{ section.settings.inquiries_description_color }};
+             }
+
+
+       .{{ section.id }}-contact .inquiries_blocks_container{
+        margin: {{ section.settings.blocks_margin_top_bottom }}px 0px ;
+       }
+
+       .{{ section.id }}-contact .inquiries_email p strong{
+             background: black;
+             border: 1px solid {{ section.settings.email_border_color }};
+             padding: 0px 7px;
+             border-radius: 20px;
+             font-weight: 400;
+         }
+     @media only screen and (max-width: 900px) {
+
+       .{{ section.id }}-contact .contactus_container{
+
+         padding:{{ section.settings.main_padding_top_mobile }}px {{ section.settings.main_padding_right_mobile }}px {{ section.settings.main_padding_bottom_mobile }}px {{ section.settings.main_padding_left_mobile }}px;
+
+   }
+      .
+       .{{ section.id }}-contact .contactus_heading{
+          font-size:{{ section.settings.heading_font_size_mobile }}px;
+          margin-bottom:{{ section.settings.heading_margin_bottom_mobile }}px;
+       }
+      .{{ section.id }}-contact .contactus_paragraph{
+         font-size:{{ section.settings.paragraph_font_size_mobile }}px;
+      }
+
+     .{{ section.id }}-contact .inquiries_title{
+     font-size:{{ section.settings.inquiries_title_font_size_mobile }}px;
+     }
+
+     .{{ section.id }}-contact .inquiries_description{
+   font-size:{{ section.settings.inquiries_description_font_size_mobile }}px;
+     }
+      .{{ section.id }}-contact .contactus_inquiries_blocks{
+         margin-bottom: {{ section.settings.inquiries_blocks_margin_bottom_mobile }}px;
+       }
+
+
+     .{{ section.id }}-contact .inquiries_blocks_container{
+        margin: {{ section.settings.blocks_margin_top_bottom_mobile }}px 0px ;
+       }
+
+     .{{ section.id }}-contact .location_title{
+     font-size:{{ section.settings.location_title_font_size_mobile }}px;
+    }
+
+   .{{ section.id }}-contact .location_description{
+     font-size:{{ section.settings.location_description_font_size_mobile }}px;
+   }
+   .{{ section.id }}-contact  .schedule_heading{
+  font-size:{{ section.settings.schedule_heading_font_size_mobile }}px;
+   }
+     }
+</style>
+
+{% schema %}
+    {
+  "name": "Contact US Page",
+  "settings": [
+     {
+        "type": "header",
+        "content": " Main Container padding Settings"
+        },
+         {
+        "type": "range",
+        "id": "main_padding_top",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding Top For Desktop",
+        "default": 40
+        },
+        {
+        "type": "range",
+        "id": "main_padding_right",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding Right For Desktop",
+        "default": 40
+        },
+        {
+        "type": "range",
+        "id": "main_padding_bottom",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding Bottom For Desktop",
+        "default": 40
+        },
+        {
+        "type": "range",
+        "id": "main_padding_left",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding Left For Desktop",
+        "default": 40
+        },
+        {
+        "type": "range",
+        "id": "main_padding_top_mobile",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding Top For Mobile",
+        "default": 20
+        },
+        {
+        "type": "range",
+        "id": "main_padding_right_mobile",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding Right For Mobile",
+        "default": 20
+        },
+        {
+        "type": "range",
+        "id": "main_padding_bottom_mobile",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding Bottom For Mobile",
+        "default": 20
+        },
+        {
+        "type": "range",
+        "id": "main_padding_left_mobile",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding Left For Mobile",
+        "default": 20
+        },
+        {
+        "type": "color",
+        "id": "contactus_container_bg_color",
+        "label": "Container Background Color",
+        "default": "#FFFFFF"
+        },
+        {
+        "type": "header",
+        "content": " Contact Us Section Settings"
+      },
+      {
+        "type": "header",
+        "content": " Contact Us Heading Settings"
+      },
+      {
+      "type": "richtext",
+      "id": "contactus_heading",
+      "label": "Contact Us Heading"
+      },
+      {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#353535"
+       },
+      {
+      "type": "range",
+      "id": "heading_font_size",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading Font Size",
+      "default": 30
+      },
+      {
+      "type": "range",
+      "id": "heading_font_size_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading Font Size Mobile",
+      "default": 20
+      },
+      {
+      "type": "range",
+      "id": "heading_font_weight",
+      "min": 100,
+      "max": 900,
+      "step": 100,
+      "unit": "px",
+      "label": "Heading Font Weight",
+      "default": 600
+      },
+      {
+      "type": "range",
+      "id": "heading_margin_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading Margin Bottom",
+      "default": 20
+      },
+      {
+      "type": "range",
+      "id": "heading_margin_bottom_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading Margin Bottom Mobile",
+      "default": 10
+      },
+      {
+        "type": "header",
+        "content": " Paragraph Section Settings"
+      },
+      {
+      "type": "richtext",
+      "id": "contactus_paragraph",
+      "label": "Paragraph"
+      },
+      {
+      "type": "color",
+      "id": "paragraph_color",
+      "label": "Paragraph Color",
+      "default": "#353535"
+       },
+      {
+      "type": "range",
+      "id": "paragraph_font_size",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Paragraph Font Size",
+      "default": 14
+      },
+      {
+      "type": "range",
+      "id": "paragraph_font_size_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Paragraph Font Size Mobile",
+      "default": 10
+      },
+      {
+      "type": "range",
+      "id": "paragraph_font_weight",
+      "min": 100,
+      "max": 900,
+      "step": 100,
+      "unit": "px",
+      "label": "Paragraph Font Weight",
+      "default": 400
+      },
+      {
+      "type": "range",
+      "id": "heading_area_margin_bottom",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Contact Us Margin Bottom",
+      "default": 20
+      },
+      {
+        "type": "header",
+        "content": " Schedule Heading Settings"
+      },
+      {
+      "type": "richtext",
+      "id": "schedule_heading",
+      "label": "Title Text"
+      },
+      {
+      "type": "color",
+      "id": "schedule_heading_title_color",
+      "label": "Heading Color",
+      "default": "#353535"
+       },
+      {
+      "type": "range",
+      "id": "schedule_heading_font_size",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Schedule Font Size",
+      "default": 14
+      },
+      {
+      "type": "range",
+      "id": "schedule_heading_font_size_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Schedule Font Size Mobile",
+      "default": 11
+      },
+      {
+      "type": "range",
+      "id": "schedule_heading_font_weight",
+      "min": 100,
+      "max": 900,
+      "step": 100,
+      "unit": "px",
+      "label": "Schedule Font Weight",
+      "default": 400
+      },
+      {
+        "type": "header",
+        "content": " Location Title Section Settings"
+      },
+      {
+      "type": "image_picker",
+      "id": "location_icon",
+      "label": "Loction Icon"
+      },
+
+      {
+      "type": "richtext",
+      "id": "location_title",
+      "label": "Location Text"
+      },
+      {
+      "type": "color",
+      "id": "location_title_color",
+      "label": "Title Color",
+      "default": "#353535"
+       },
+      {
+      "type": "range",
+      "id": "location_title_font_size",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Title Font Size",
+      "default": 14
+      },
+      {
+      "type": "range",
+      "id": "location_title_font_size_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Title Font Size Mobile",
+      "default": 10
+      },
+      {
+      "type": "range",
+      "id": "location_title_font_weight",
+      "min": 100,
+      "max": 900,
+      "step": 100,
+      "unit": "px",
+      "label": "Title Font Weight",
+      "default": 400
+      },
+
+      {
+        "type": "header",
+        "content": " Location Description Section Settings"
+      },
+      {
+      "type": "richtext",
+      "id": "location_description",
+      "label": "Description text"
+      },
+      {
+      "type": "color",
+      "id": "location_description_color",
+      "label": "Description Color",
+      "default": "#353535"
+       },
+      {
+      "type": "range",
+      "id": "location_description_font_size",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Description Font Size",
+      "default": 14
+      },
+      {
+      "type": "range",
+      "id": "location_description_font_size_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Description Font Size Mobile",
+      "default": 10
+      },
+      {
+      "type": "range",
+      "id": "location_description_font_weight",
+      "min": 100,
+      "max": 900,
+      "step": 100,
+      "unit": "px",
+      "label": "Description Font Weight",
+      "default": 400
+      },
+      {
+      "type": "header",
+      "content": " Inquiries Title Section Settings"
+      },
+      {
+      "type": "color",
+      "id": "inquiries_title_color",
+      "label": "Title Color",
+      "default": "#353535"
+       },
+      {
+      "type": "range",
+      "id": "inquiries_title_font_size",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Title Font Size",
+      "default": 15
+      },
+      {
+      "type": "range",
+      "id": "inquiries_title_font_size_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Title Font Size Mobile",
+      "default": 13
+      },
+      {
+      "type": "range",
+      "id": "inquiries_title_font_weight",
+      "min": 100,
+      "max": 900,
+      "step": 100,
+      "unit": "px",
+      "label": "Title Font Weight",
+      "default": 400
+      },
+      {
+      "type": "header",
+      "content": " Inquiries Description Section Settings"
+      },
+      {
+      "type": "color",
+      "id": "inquiries_description_color",
+      "label": "Description Color",
+      "default": "#0067d7"
+       },
+
+      {
+      "type": "range",
+      "id": "inquiries_description_font_size",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Description Font Size",
+      "default": 20
+      },
+      {
+      "type": "range",
+      "id": "inquiries_description_font_size_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Description Font Size Mobile",
+      "default": 13
+      },
+      {
+      "type": "range",
+      "id": "inquiries_description_font_weight",
+      "min": 100,
+      "max": 900,
+      "step": 100,
+      "unit": "px",
+      "label": "Description Font Weight",
+      "default": 400
+      },
+       {
+      "type": "range",
+      "id": "inquiries_blocks_margin_bottom",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Title & Email Margin Bottom",
+      "default": 25
+      },
+      {
+      "type": "range",
+      "id": "inquiries_blocks_margin_bottom_mobile",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Title & Email Margin Bottom Mobile",
+      "default": 15
+      },
+      {
+      "type": "header",
+      "content": " Inquiries Block Margin Settings"
+      },
+       {
+      "type": "range",
+      "id": "blocks_margin_top_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Block Margin Top & Bottom",
+      "default": 40
+      },
+      {
+      "type": "range",
+      "id": "blocks_margin_top_bottom_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Block Margin Top & Bottom For Mobile",
+      "default": 30
+      }
+
+
+
+
+
+  ],
+ "blocks"  : [
+             {
+                 "type":"Inquiries",
+                 "name":"Inquiries Block",
+                 "settings":[
+
+                              {
+                              "type": "image_picker",
+                              "id": "inquiries_icon",
+                              "label": "Inquiries Icon"
+                              },
+                            {
+                              "type": "richtext",
+                              "id": "inquiries_title",
+                              "label": "Inquiries Title"
+                             },
+                             {
+                              "type": "richtext",
+                              "id": "inquiries_description",
+                              "label": "Inquiries Description"
+                             }
+
+                             ]
+
+               }
+               ],
+  "presets": [
+    {
+      "name": "Custom Contact US Page"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,571 @@
+<div class="about_us_container">
+  <h1 class="about_us_heading">
+    {{ section.settings.main_heading }}
+  </h1>
+
+  <h3 class="about_us_subheading">
+    {{ section.settings.sub_heading }}
+  </h3>
+
+  {% for block in section.blocks %}
+    <div class="about_us_paragraph">
+      <div class="block_heading_image">
+        <h2>{{ block.settings.block_heading }}</h2>
+    {% if block.settings.block_image != blank %}
+        <img src="{{ block.settings.block_image | img_url: 'master' }}">
+      {% endif %}
+      </div>
+      {{ block.settings.about_us_paragraph }}
+    </div>
+  {% endfor %}
+</div>
+
+<style>
+    *{
+      box-sizing: border-box;
+      margin:0px;
+      padding:0px;
+    }
+
+    .about_us_container{
+      background-color:{{ section.settings.about_us_bg_color}};
+      padding-top:{{ section.settings.about_us_padding_top_desktop }}px;
+      padding-bottom:{{ section.settings.about_us_padding_bottom_desktop }}px;
+      padding-left:{{ section.settings.about_us_padding_left_desktop }}px;
+      padding-right:{{ section.settings.about_us_padding_right_desktop }}px;
+    }
+
+
+    .about_us_heading{
+      text-align: center;
+      color:{{ section.settings.about_us_heading_color }};
+      font-size:{{ section.settings.about_us_heading_font_size_desktop }}px;
+      font-weight:{{ section.settings.about_us_heading_font_weight }};
+      margin-bottom:{{ section.settings.about_us_heading_margin_bottom_desktop }}px;
+      font-family: Lato;
+      line-height: normal; 
+      
+      }
+
+
+    .about_us_heading strong{
+      position:relative;
+      }
+
+    .about_us_heading p strong:after {
+      width: 70%;
+      height: {{ section.settings.heading_underline_thickness }}px;
+      display: block;
+      position: absolute;
+      content: '';
+      background-color: {{ section.settings.heading_underline_color }};
+      right: 40px;
+      }
+
+    .about_us_subheading{
+      color:{{ section.settings.about_us_subheading_color }};
+      font-size:{{ section.settings.about_us_subheading_font_size_desktop }}px;
+      font-weight:{{ section.settings.about_us_subheading_font_weight }};
+     letter-spacing: -2px;
+      max-width: 1000px;
+      margin: 0 auto {{ section.settings.about_us_subheading_margin_bottom_desktop }}px;
+    }
+
+
+
+    .about_us_paragraph{
+      color:{{ section.settings.about_us_paragraph_color }};
+      font-size:{{ section.settings.about_us_paragraph_font_size_desktop }}px;
+      font-weight:{{ section.settings.about_us_paragraph_font_weight }};
+      max-width: 1000px;
+      margin: 0 auto {{ section.settings.aboutus_para_margin_bottom_desktop }}px;
+      letter-spacing: 0px;
+      line-height: 120%;
+      font-family: Lato; 
+      line-height: 130%;
+    }
+    .about_us_paragraph p strong{
+      color:{{ section.settings.about_us_paragraph_heading_color }};
+      font-size:{{section.settings.about_us_para_heading_font_size }}px;
+      font-weight:{{ section.settings.about_us_para_heading_font_weight }};
+      letter-spacing: -1px;
+      font-family: Lato; 
+      line-height: 160%;
+    }
+    .block_heading_image{
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 10px;
+    }
+    .block_heading_image h2 p{
+      font-size: clamp({{ section.settings.heading_fz_mb }}px, ({{section.settings.heading_fz}} / 1440) * 100vw, {{ section.settings.heading_fz }}px) !important;
+      color: {{section.settings.heading_fc}} !important;
+      font-weight: {{section.settings.heading_fw}} !important;
+      line-height: 1;
+    }
+    .block_heading_image h2 p strong{
+      font-weight: {{section.settings.heading_fw}} !important;
+      color: {{section.settings.heading_fc_bold}} !important;
+    }
+    
+  @media screen and (max-width: 768px){
+      .about_us_container{
+      padding-top:{{ section.settings.about_us_padding_top_mobile }}px;
+      padding-bottom:{{ section.settings.about_us_padding_bottom_mobile }}px;
+      padding-left:{{ section.settings.about_us_padding_left_mobile }}px;
+      padding-right:{{ section.settings.about_us_padding_right_mobile }}px;
+    }
+
+
+      .about_us_heading{
+      font-size:{{ section.settings.about_us_heading_font_size_mobile }}px;
+      margin-bottom:{{ section.settings.about_us_heading_margin_bottom_mobile }}px;
+      }
+      .about_us_heading p strong:after{
+      right:20px;
+      }
+      .about_us_subheading{
+      font-size:{{ section.settings.about_us_subheading_font_size_mobile }}px;
+      margin-bottom:{{ section.settings.about_us_subheading_margin_bottom_mobile }}px;
+      text-align:center;
+      letter-spacing:-1px;
+      }
+      .about_us_paragraph{
+      font-size:{{ section.settings.about_us_paragraph_font_size_mobile }}px;
+      margin-bottom:{{ section.settings.aboutus_para_margin_bottom_mobile }}px;
+      text-align:left;
+      }
+    .about_us_paragraph p strong{
+      font-size:{{ section.settings.about_us_para_heading_font_size_mobile }}px;
+    }
+  }
+</style>
+
+{% schema %}
+    {
+  "name": "About Us",
+  "settings": [
+
+      {
+        "type": "header",
+        "content": " Container Section Padding Settings"
+      },
+
+         {
+        "type": "range",
+        "id": "about_us_padding_top_desktop",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding Top For Desktop",
+        "default": 40
+        },
+        {
+        "type": "range",
+        "id": "about_us_padding_bottom_desktop",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding Bottom For Desktop",
+        "default": 40
+        },
+        {
+        "type": "range",
+        "id": "about_us_padding_left_desktop",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding Left For Desktop",
+        "default": 40
+        },
+        {
+        "type": "range",
+        "id": "about_us_padding_right_desktop",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding Right For Desktop",
+        "default": 40
+        },
+        {
+        "type": "range",
+        "id": "about_us_padding_top_mobile",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding Top For Mobile",
+        "default": 20
+        },
+        {
+        "type": "range",
+        "id": "about_us_padding_bottom_mobile",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding Bottom For Mobile",
+        "default": 20
+        },
+        {
+        "type": "range",
+        "id": "about_us_padding_left_mobile",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding Left For Mobile",
+        "default": 10
+        },
+        {
+        "type": "range",
+        "id": "about_us_padding_right_mobile",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding Right For Mobile",
+        "default": 10
+        },
+
+              {
+                "type": "header",
+                "content": " Container Section Background Settings"
+              },
+              {
+              "type": "color",
+              "id": "about_us_bg_color",
+              "label": "Container Background Color",
+              "default": "#ffffff"
+              },
+              {
+                "type": "header",
+                "content": " Heading Section Settings"
+              },
+              {
+              "type": "richtext",
+              "id": "main_heading",
+              "label": "Main Heading Text"
+              },
+              {
+              "type": "color",
+              "id": "about_us_heading_color",
+              "label": "Heading Text Color",
+              "default": "#F68E1E"
+              },
+              {
+              "type": "color",
+              "id": "heading_underline_color",
+              "label": "Heading Underline Color",
+              "default": "#000000"
+              },
+              {
+              "type": "range",
+              "id": "heading_underline_thickness",
+              "min": 0,
+              "max": 5,
+              "step": 1,
+              "unit": "px",
+              "label": "Heading Underline Thickness",
+              "default": 3
+              },
+              {
+              "type": "range",
+              "id": "about_us_heading_font_size_desktop",
+              "min": 1,
+              "max": 72,
+              "step": 1,
+              "unit": "px",
+              "label": "Heading Font Size Desktop",
+              "default": 40
+              },
+              {
+              "type": "range",
+              "id": "about_us_heading_font_size_mobile",
+              "min": 1,
+              "max": 72,
+              "step": 1,
+              "unit": "px",
+              "label": "Heading Font Size Mobile",
+              "default": 20
+              },
+              {
+              "type": "range",
+              "id": "about_us_heading_font_weight",
+              "min": 100,
+              "max": 900,
+              "step": 100,
+              "unit": "px",
+              "label": "Heading Font Weight",
+              "default": 900
+              },
+              {
+              "type": "range",
+              "id": "about_us_heading_margin_bottom_desktop",
+              "min": 0,
+              "max": 100,
+              "step": 1,
+              "unit": "px",
+              "label": "Heading Margin Bottom For Desktop",
+              "default": 40
+              },
+              {
+              "type": "range",
+              "id": "about_us_heading_margin_bottom_mobile",
+              "min": 0,
+              "max": 100,
+              "step": 1,
+              "unit": "px",
+              "label": "Heading Margin Bottom For Mobile",
+              "default": 20
+              },
+              {
+                "type": "header",
+                "content": " Sub Heading Section Settings"
+              },
+              {
+              "type": "richtext",
+              "id": "sub_heading",
+              "label": "Sub Heading Text"
+              },
+                {
+              "type": "color",
+              "id": "about_us_subheading_color",
+              "label": "Sub Heading Text Color",
+              "default": "#000000"
+              },
+              {
+              "type": "range",
+              "id": "about_us_subheading_font_size_desktop",
+              "min": 1,
+              "max": 72,
+              "step": 1,
+              "unit": "px",
+              "label": "Sub Heading Font Size Desktop",
+              "default": 30
+              },
+              {
+              "type": "range",
+              "id": "about_us_subheading_font_size_mobile",
+              "min": 1,
+              "max": 72,
+              "step": 1,
+              "unit": "px",
+              "label": " Sub Heading Font Size Mobile",
+              "default": 22
+              },
+              {
+              "type": "range",
+              "id": "about_us_subheading_font_weight",
+              "min": 100,
+              "max": 900,
+              "step": 100,
+              "unit": "px",
+              "label": "Sub Heading Font Weight",
+              "default": 700
+              },
+
+              {
+              "type": "range",
+              "id": "about_us_subheading_margin_bottom_desktop",
+              "min": 0,
+              "max": 100,
+              "step": 1,
+              "unit": "px",
+              "label": "Sub Heading Margin Bottom For Desktop",
+              "default": 40
+              },
+              {
+              "type": "range",
+              "id": "about_us_subheading_margin_bottom_mobile",
+              "min": 0,
+              "max": 100,
+              "step": 1,
+              "unit": "px",
+              "label": "Sub Heading Margin Bottom For Mobile",
+              "default": 20
+              },
+              {
+                "type": "header",
+                "content": " Block Heading Settings"
+              },
+              {
+              "type": "color",
+              "id": "heading_fc",
+              "label": "Color",
+              "default": "#132530"
+              },
+              {
+              "type": "color",
+              "id": "heading_fc_bold",
+              "label": "Color",
+              "default": "#132530"
+              },
+              {
+              "type": "range",
+              "id": "heading_fz",
+              "min": 1,
+              "max": 100,
+              "step": 1,
+              "unit": "px",
+              "label": "Font Size",
+              "default": 32
+              },
+              {
+              "type": "range",
+              "id": "heading_fz_mb",
+              "min": 1,
+              "max": 100,
+              "step": 1,
+              "unit": "px",
+              "label": "Font Size Mobile",
+              "default": 20
+              },
+              {
+              "type": "range",
+              "id": "heading_fw",
+              "min": 100,
+              "max": 900,
+              "step": 100,
+              "unit": "px",
+              "label": "Font Weight",
+              "default": 900
+              },
+              {
+            "type": "header",
+            "content": " Paragraph Section Settings"
+              },
+              {
+              "type": "color",
+              "id": "about_us_paragraph_heading_color",
+              "label": "Paragraph Heading Text Color",
+              "default": "#F68E1E"
+              },
+              {
+              "type": "range",
+              "id": "about_us_para_heading_font_size",
+              "min": 1,
+              "max": 72,
+              "step": 1,
+              "unit": "px",
+              "label": "Heading Font Size Desktop",
+              "default": 26
+              },
+              {
+              "type": "range",
+              "id": "about_us_para_heading_font_size_mobile",
+              "min": 1,
+              "max": 72,
+              "step": 1,
+              "unit": "px",
+              "label": "Heading Font Size Mobile",
+              "default": 16
+              },
+              {
+              "type": "range",
+              "id": "about_us_para_heading_font_weight",
+              "min": 100,
+              "max": 900,
+              "step": 100,
+              "unit": "px",
+              "label": "Heading Font Weight",
+              "default": 700
+              },
+              {
+              "type": "color",
+              "id": "about_us_paragraph_color",
+              "label": "Paragraph Text Color",
+              "default": "#000000"
+              },
+              {
+              "type": "range",
+              "id": "about_us_paragraph_font_size_desktop",
+              "min": 1,
+              "max": 72,
+              "step": 1,
+              "unit": "px",
+              "label": "Paragraph Font Size Desktop",
+              "default": 20
+              },
+              {
+              "type": "range",
+              "id": "about_us_paragraph_font_size_mobile",
+              "min": 1,
+              "max": 72,
+              "step": 1,
+              "unit": "px",
+              "label": "Paragraph Font Size Mobile",
+              "default": 15
+              },
+              {
+              "type": "range",
+              "id": "about_us_paragraph_font_weight",
+              "min": 100,
+              "max": 900,
+              "step": 100,
+              "unit": "px",
+              "label": "Paragraph Font Weight",
+              "default": 400
+              },
+
+              {
+              "type": "range",
+              "id": "aboutus_para_margin_bottom_desktop",
+              "min": 0,
+              "max": 100,
+              "step": 1,
+              "unit": "px",
+              "label": "Paragraph Margin Bottom For Desktop",
+              "default": 40
+              },
+              {
+              "type": "range",
+              "id": "aboutus_para_margin_bottom_mobile",
+              "min": 0,
+              "max": 100,
+              "step": 1,
+              "unit": "px",
+              "label": "Paragraph Margin Bottom For Mobile",
+              "default": 20
+              }
+
+  ],
+       "blocks"  : [
+             {
+                 "type":"About_Us",
+                 "name":"About Us blocks",
+                 "settings":[
+{
+  "type": "richtext",
+  "id": "block_heading",
+  "label": "Heading"
+},
+{
+  "type": "image_picker",
+  "id": "block_image",
+  "label": "Logo Image"
+},
+
+
+                            {
+                              "type": "richtext",
+                              "id": "about_us_paragraph",
+                              "label": "Paragraph"
+                             }
+
+                             ]
+
+               }
+               ],
+  "presets": [
+    {
+      "name": "Custom About Us"
+    }
+  ]
+}
+{% endschema %}

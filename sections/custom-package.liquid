@@ -1,0 +1,298 @@
+<!-- Section Name: custom-package.liquid -->
+
+<div id="sid-{{ section.id }}">
+  <div class="custom_package">
+    <div class="custom_package_container">
+      <div class="package_heading">
+        <h2>{{ section.settings.heading }}</h2>
+      </div>
+      <div class="package_block_container">
+        {% for block in section.blocks %}
+          <div class="package_block">
+            <h2>{{ block.settings.packageHeading }}</h2>
+            <div class="package_list">
+              <div class="list_heading">
+                <h3>{{ block.settings.package_list_heading }}</h3>
+              </div>
+              <div class="list_item">
+                {{ block.settings.package_list }}
+              </div>
+            </div>
+            <div class="package_price">
+              <p>
+                {{ block.settings.price }}
+              </p>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+      <div class="custom_button">
+        <a href="{{ section.settings.btn_link }}" class="custom_button_link">{{ section.settings.btn_text }}</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  #sid-{{ section.id }} .custom_package{
+    width: 100%;
+    background: {{ section.settings.background_color1 }};
+  }
+  #sid-{{ section.id }} .custom_package_container{
+    max-width: {{ section.settings.page_size }}px;
+    width:100%; margin: 0 auto;
+    padding: {{ section.settings.top_padding }}px {{ section.settings.right_padding }}px {{ section.settings.bottom_padding }}px {{ section.settings.left_padding }}px;
+  }
+  #sid-{{ section.id }} .package_block_container{
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 40px;
+  }
+  #sid-{{ section.id }} .package_block{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  #sid-{{ section.id }} .package_block h2 p{
+    font-size: clamp(14px,(14 / 1440) * 100vw,14px);
+    font-weight: 400;
+    color: #fff;
+    margin-bottom: 5px;
+  }
+  #sid-{{ section.id }} .package_list{
+    padding: 20px;
+    background: #fff;
+    box-shadow: 2px 2px 4px 0px #000;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  #sid-{{ section.id }} .list_heading{
+    background: #fe7d32;
+    padding: 10px;
+  }
+  #sid-{{ section.id }} .list_heading h3 p{
+    font-size: 20px;
+    font-weight: 600;
+    color: #fff;
+    font-family: 'Poppins';
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+  #sid-{{ section.id }} .list_item p{
+    line-height: 1;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 400;
+    color: #ffa540;
+    margin: 10px;
+  }
+  #sid-{{ section.id }} .package_price p{
+    font-size: clamp(30px,(30 / 1440) * 100vw,30px);
+    font-weight: 800;
+    color: #fff;
+    line-height: 1;
+    font-family: 'Poppins';
+    margin-top: 15px;
+    transform: rotate(355deg);
+  }
+  #sid-{{ section.id }} .custom_button{
+    border: 2px solid #F68E1E;
+    background: rgb(19 37 48);
+    padding: 15px 20px;
+    transition: .5s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    margin: 15px auto 0;
+  }
+  #sid-{{ section.id }} .custom_button_link{
+    color: #f68e1e;
+    text-align: center;
+    font-family: Lato,sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1;
+  }
+  #sid-{{ section.id }} .custom_button:hover {
+    background: #F68E1E;
+    border: 2px solid rgb(19 37 48);
+  }
+  #sid-{{ section.id }} .custom_button:hover .custom_button_link {
+    color: #fff !important;
+  }
+
+  @media only screen and (max-width:767px){
+    #sid-{{ section.id }} .custom_package_container{
+      padding: {{ section.settings.top_padding_mb }}px {{ section.settings.right_padding_mb }}px {{ section.settings.bottom_padding_mb }}px {{ section.settings.left_padding_mb }}px;
+    }
+  }
+</style>
+
+{% schema %}
+  {
+    "name": "Package Block",
+    "settings": [
+      {
+  "type": "header",
+  "content": "Section Settings"
+},
+{
+  "type": "number",
+  "id": "page_size",
+  "label": "Section Container Size",
+  "default": 1440
+},
+{
+  "type": "color_background",
+  "id": "background_color1",
+  "label": "Background",
+  "default": "radial-gradient(#ffb244, #fe7b31)"
+},
+{
+  "type": "range",
+  "id": "top_padding",
+  "min": 0,
+  "max": 100,
+  "step": 1,
+  "unit": "px",
+  "label": "Top Padding",
+  "default": 40
+},
+{
+  "type": "range",
+  "id": "bottom_padding",
+  "min": 0,
+  "max": 100,
+  "step": 1,
+  "unit": "px",
+  "label": "Bottom Padding",
+  "default": 40
+},
+{
+  "type": "range",
+  "id": "right_padding",
+  "min": 0,
+  "max": 100,
+  "step": 1,
+  "unit": "px",
+  "label": "Right Padding",
+  "default":40
+},
+{
+  "type": "range",
+  "id": "left_padding",
+  "min": 0,
+  "max": 100,
+  "step": 1,
+  "unit": "px",
+  "label": "Left Padding",
+  "default": 40
+},
+{
+  "type": "range",
+  "id": "top_padding_mb",
+  "min": 0,
+  "max": 100,
+  "step": 1,
+  "unit": "px",
+  "label": "Top Padding Mobile",
+  "default": 40
+},
+{
+  "type": "range",
+  "id": "bottom_padding_mb",
+  "min": 0,
+  "max": 100,
+  "step": 1,
+  "unit": "px",
+  "label": "Bottom Padding Mobile",
+  "default": 40
+},
+{
+  "type": "range",
+  "id": "right_padding_mb",
+  "min": 0,
+  "max": 100,
+  "step": 1,
+  "unit": "px",
+  "label": "Right Padding Mobile",
+  "default":20
+},
+{
+  "type": "range",
+  "id": "left_padding_mb",
+  "min": 0,
+  "max": 100,
+  "step": 1,
+  "unit": "px",
+  "label": "Left Padding Mobile",
+  "default": 20
+},
+{
+  "type": "richtext",
+  "id": "heading",
+  "label": "Heading"
+},
+{
+  "type": "text",
+  "id": "btn_text",
+  "label": "Button Text",
+  "default": "Get An Appointment"
+},
+{
+  "type": "url",
+  "id": "btn_link",
+  "label": "Button link"
+}
+
+
+    ],
+    "blocks":[
+    {
+        "name": "Package Block",
+      "type": "block",
+      "settings":[
+        {
+  "type": "richtext",
+  "id": "packageHeading",
+  "label": "Package Heading"
+},
+        {
+  "type": "richtext",
+  "id": "package_list_heading",
+  "label": "Package Sub Heading"
+},
+        {
+  "type": "richtext",
+  "id": "package_list",
+  "label": "Package List"
+},
+        {
+  "type": "text",
+  "id": "price",
+  "label": "Price",
+  "default": "RS.4200/-"
+}
+
+      ]
+    }
+  ],
+    "presets": [
+    {
+      "name": "Package Block"
+
+    }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

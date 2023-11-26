@@ -1,0 +1,426 @@
+<div class="{{ section.id }}">
+  <div class="footer_image_container">
+    <div class="footer_bg_image">
+      <div class="footer_map">
+        <div class="address_textarea">
+          <div class="address_heading">
+            <h1>{{ section.settings.address_heading }}</h1>
+          </div>
+          <div class="address_paragraph">{{ section.settings.address_paragraph }}</div>
+        </div>
+        <div class="location_area">
+          <div class="location_title">{{ section.settings.location_title }}</div>
+          <div class="location_link">{{ section.settings.location_link }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+    .{{ section.id }} .footer_image_container{
+                background-image: url('{{ section.settings.footer_image_url | img_url: 'master' }}  ')!important;
+                background-size: cover;
+                background-repeat: no-repeat;
+                width: 100%;
+                height: 320px;
+
+    }
+
+
+     .{{ section.id }}   .address_heading{
+                display: flex;
+      }
+
+
+      .{{ section.id }} .address_heading h1{
+        color:{{ section.settings.heading_color }};
+        font-size:{{ section.settings.heading_font_size }}px;
+        font-weight:{{ section.settings.heading_font_weight }};
+        margin-bottom:{{ section.settings.heading_margin_bottom }}px;
+        line-height: 100%;
+        font-family: Poppins;
+      }
+
+       .{{ section.id }} .address_paragraph{
+        color:{{ section.settings.paragraph_color }};
+        font-size:{{ section.settings.paragraph_font_size }}px;
+        font-weight:{{ section.settings.paragraph_font_weight }};
+        font-family: lato;
+      }
+
+
+          .{{ section.id }} .location_area{
+          display:flex;
+          gap:40px;
+          align-items: center;
+
+          }
+
+          .{{ section.id }} .footer_map{
+
+          padding: {{ section.settings.padding_top }}px {{ section.settings.padding_right }}px {{ section.settings.padding_bottom }}px {{ section.settings.padding_left }}px;
+          }
+
+
+        .{{ section.id }} .address_textarea {
+
+          align-items: center;
+         }
+
+        .{{ section.id }} .footer_image_container {
+            display: flex;
+            align-items: center;
+        }
+
+      .{{ section.id }} .location_title{
+        color:{{ section.settings.title_color }};
+        font-size:{{ section.settings.title_font_size }}px;
+        font-weight:{{ section.settings.title_font_weight }};
+        font-family: Poppins;
+      }
+
+     .{{ section.id }} .location_link a{
+        color:{{ section.settings.link_color }};
+        font-size:{{ section.settings.link_font_size }}px;
+        font-weight:{{ section.settings.link_font_weight }};
+        font-family: lato;
+      }
+   @media only screen and (max-width: 767px){
+   .{{ section.id }} .footer_image_container{
+    background-position: center;
+  }
+  .{{ section.id }} .address_heading h1{
+    font-size:{{ section.settings.heading_font_size_mobile }}px;
+  }
+  .{{ section.id }} .address_paragraph{
+    font-size:{{ section.settings.paragraph_font_size_mobile }}px;
+  }
+  .{{ section.id }} .location_title{
+    font-size:{{ section.settings.title_font_size_mobile }}px;
+  }
+  .{{ section.id }} .location_link a{
+    font-size:{{ section.settings.link_font_size_mobile }}px;
+  }
+     .{{ section.id }} .location_area{
+      gap:0px;
+      flex-wrap: wrap;
+      width: 80%;
+      align-items: flex-end;
+  }
+
+   .{{ section.id }} .footer_map{
+    padding: {{ section.settings.padding_top_mobile }}px {{ section.settings.padding_right_mobile }}px {{ section.settings.padding_bottom_mobile }}px {{ section.settings.padding_left_mobile }}px;
+
+          }
+
+    }
+</style>
+
+{% schema %}
+    {
+  "name": "Footer Image",
+  "settings": [
+      {
+      "type": "header",
+      "content": "Footer  Section Padding Settings"
+      },
+      {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 40
+      },
+      {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 40
+      },
+      {
+      "type": "range",
+      "id": "padding_right",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding Right",
+      "default": 40
+      },
+      {
+      "type": "range",
+      "id": "padding_left",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding Left",
+      "default": 40
+      },
+      {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding Top Mobile",
+      "default": 20
+      },
+      {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding Bottom Mobile",
+      "default": 20
+      },
+      {
+      "type": "range",
+      "id": "padding_right_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding Right Mobile",
+      "default": 20
+      },
+      {
+      "type": "range",
+      "id": "padding_left_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding Left Mobile",
+      "default": 20
+      },
+        {
+        "type": "header",
+        "content": "Footer Image Section Settings"
+        },
+        {
+        "type": "image_picker",
+        "id": "footer_image_url",
+        "label": "Background Image"
+        },
+        {
+        "type": "text",
+        "id": "address_heading",
+        "label": "Heading",
+        "default": "STORE LOCATION"
+        },
+        {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#F68E1E"
+       },
+      {
+      "type": "range",
+      "id": "heading_font_size",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading Font Size",
+      "default": 50
+      },
+      {
+      "type": "range",
+      "id": "heading_font_size_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading Font Size Mobile",
+      "default": 25
+      },
+      {
+      "type": "range",
+      "id": "heading_font_weight",
+      "min": 100,
+      "max": 900,
+      "step": 100,
+      "unit": "px",
+      "label": "Heading Font Weight",
+      "default": 300
+      },
+      {
+      "type": "range",
+      "id": "heading_margin_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading Margin Bottom",
+      "default": 20
+      },
+      {
+      "type": "range",
+      "id": "heading_margin_bottom_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading Margin Bottom Mobile",
+      "default": 10
+      },
+      {
+        "type": "header",
+        "content": " Paragraph Section Settings"
+      },
+      {
+      "type": "richtext",
+      "id": "address_paragraph",
+      "label": "Paragraph"
+      },
+      {
+      "type": "color",
+      "id": "paragraph_color",
+      "label": "Paragraph Color",
+      "default": "#353535"
+       },
+      {
+      "type": "range",
+      "id": "paragraph_font_size",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Paragraph Font Size",
+      "default": 14
+      },
+      {
+      "type": "range",
+      "id": "paragraph_font_size_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Paragraph Font Size Mobile",
+      "default": 10
+      },
+      {
+      "type": "range",
+      "id": "paragraph_font_weight",
+      "min": 100,
+      "max": 900,
+      "step": 100,
+      "unit": "px",
+      "label": "Paragraph Font Weight",
+      "default": 600
+      },
+
+      {
+        "type": "header",
+        "content": " Location Section Settings"
+      },
+      {
+      "type": "richtext",
+      "id": "location_title",
+      "label": "Location Title"
+      },
+      {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title Color",
+      "default": "#353535"
+       },
+      {
+      "type": "range",
+      "id": "title_font_size",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Title Font Size",
+      "default": 14
+      },
+      {
+      "type": "range",
+      "id": "title_font_size_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Title Font Size Mobile",
+      "default": 10
+      },
+      {
+      "type": "range",
+      "id": "title_font_weight",
+      "min": 100,
+      "max": 900,
+      "step": 100,
+      "unit": "px",
+      "label": "Title Font Weight",
+      "default": 600
+      },
+       {
+        "type": "header",
+        "content": " Location Section Settings"
+      },
+      {
+      "type": "richtext",
+      "id": "location_link",
+      "label": "Link"
+      },
+      {
+      "type": "color",
+      "id": "link_color",
+      "label": "Link Color",
+      "default": "#f68e1e"
+       },
+      {
+      "type": "range",
+      "id": "link_font_size",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Link Font Size",
+      "default": 14
+      },
+      {
+      "type": "range",
+      "id": "link_font_size_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Link Font Size Mobile",
+      "default": 10
+      },
+      {
+      "type": "range",
+      "id": "link_font_weight",
+      "min": 100,
+      "max": 900,
+      "step": 100,
+      "unit": "px",
+      "label": "Link Font Weight",
+      "default": 600
+      }
+
+
+
+  ],
+
+  "presets": [
+    {
+      "name": "Custom Footer Image"
+    }
+  ]
+}
+{% endschema %}

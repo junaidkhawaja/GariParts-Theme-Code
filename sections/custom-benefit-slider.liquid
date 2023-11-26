@@ -1,0 +1,463 @@
+<div class="{{ section.id }}">
+  <div class="benefit_container">
+    <div class="our_shop_container">
+      <div class="ourshop_textarea">
+        <div class="ourshop_heading">
+          <h1>
+            {{ section.settings.ourshop_heading }}
+          </h1>
+        </div>
+      </div>
+    </div>
+    <div class="all_ourshop_images">
+      {% for block in section.blocks %}
+        <div class="ourshop_images">
+          <a href="{{ section.settings.ourshop_images_link }}" target="_blank">
+            <img src="{{ block.settings.ourshop_images | img_url: 'master' }}">
+
+            <h5 class="image_text">
+              {{ block.settings.slider_image_text }}
+            </h5>
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<style>
+            .benefit_container{
+             background-color:{{  section.settings.our_shop_container_background_color }};
+             padding-top:{{ section.settings.our_shop_container_padding_top_desktop }}px;
+             padding-bottom:{{ section.settings.our_shop_container_padding_bottom_desktop }}px;
+             padding-left:{{ section.settings.our_shop_container_padding_left_desktop }}px;
+             padding-right:{{ section.settings.our_shop_container_padding_right_desktop }}px;
+              max-width: 1440px;
+              margin: 0 auto;
+            }
+
+
+
+            .ourshop_heading h1{
+              color:{{ section.settings.ourshop_heading_color }};
+              font-size:{{ section.settings.ourshop_heading_font_size_desktop }}px;
+              font-weight:{{ section.settings.ourshop_heading_font_weight }};
+              font-family: 'Poppins', sans-serif;
+              text-align:center;
+              margin-bottom: {{ section.settings.ourshop_heading_margin_bottom_desktop }}px;
+            }
+           .ourshop_heading strong{
+              position:relative;
+              font-weight:{{ section.settings.ourshop_heading_font_weight }};
+             }
+
+        .ourshop_heading h1 p strong:after {
+
+                width: 100%;
+                height: {{ section.settings.ourshop_heading_underline_thickness }}px;
+                display: block;
+                position: absolute;
+                content: '';
+                background-color: {{ section.settings.ourshop_heading_underline_color }};
+                right: 0px;
+                bottom:-1px;
+        }
+       .ourshop_textarea {
+
+          width: 100%;
+          margin: 0 auto;
+      }
+
+        .image_text{
+        text-align:center;
+        color:{{ section.settings.ourshop_image_text_color }};
+        font-size:{{ section.settings.ourshop_image_text_font_size_desktop }}px;
+        font-weight:{{ section.settings.ourshop_image_text_font_weight }};
+      }
+
+        .all_ourshop_images img{
+
+                  display:flex;
+                  width: 100%;
+                  gap: 90px;
+                  justify-content: space-around;
+                  }
+
+        .ourshop_images{
+          margin-left: 10px;
+          margin-right: 10px;
+        }
+
+        .ourshop_images a{
+         text-decoration: none;
+          display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+        }
+
+
+
+
+  @media screen and (max-width: 1023px){
+
+          .ourshop_heading h1{
+
+              font-size:{{ section.settings.ourshop_heading_font_size_tablet }}px;
+            }
+
+
+  }
+
+          @media screen and (max-width: 767px) {
+
+            .benefit_container{
+
+             padding-top:{{ section.settings.our_shop_container_padding_top_mobile }}px;
+             padding-bottom:{{ section.settings.our_shop_container_padding_bottom_mobile }}px;
+             padding-left:{{ section.settings.our_shop_container_padding_left_mobile }}px;
+             padding-right:{{ section.settings.our_shop_container_padding_right_mobile }}px;
+             }
+
+            .ourshop_heading h1{
+
+              font-size:{{ section.settings.ourshop_heading_font_size_mobile }}px;
+              margin-bottom: {{ section.settings.ourshop_heading_margin_bottom_mobile }}px;
+            }
+             .image_text{
+
+            font-size:{{ section.settings.ourshop_image_text_font_size_mobile }}px;
+            }
+         }
+</style>
+<script type="text/javascript">
+   $(document).ready(function() {
+    setTimeout(() => {
+  $('.all_ourshop_images').slick({
+
+
+
+    slidesToShow: 5,
+    slidesToScroll: 1,
+     autoplay: {{ section.settings.slick_autoplay }},
+    speed: {{ section.settings.slick_autoplay_speed }},
+    dots: {{ section.settings.slick_dots }},
+    arrows: {{ section.settings.slick_arrow }},
+    autoplaySpeed: 0,
+    cssEase: 'linear',
+     responsive: [
+
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 3,
+        slidesToScroll: 3,
+         speed: 4000
+
+      }
+    },
+    {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 2,
+         speed: 4000
+      }
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+         speed: 4000
+      }
+    }
+    // You can unslick at a given breakpoint now by adding:
+    // settings: "unslick"
+    // instead of a settings object
+  ]
+  });
+       }, 1500)
+  
+  });
+</script>
+
+{% schema %}
+    {
+  "name": "Our Shop Slider",
+  "settings": [
+
+ {
+  "type": "checkbox",
+  "id": "slick_arrow",
+  "label": "Arrow Show/Hide",
+  "default": true
+},
+    {
+  "type": "checkbox",
+  "id": "slick_dots",
+  "label": "Dots Show/Hide",
+  "default": true
+},
+    {
+  "type": "checkbox",
+  "id": "slick_autoplay",
+  "label": "Autoplay",
+  "default": false
+},
+{
+  "type": "range",
+  "id": "slick_autoplay_speed",
+  "min": 1000,
+  "max": 5000,
+  "step": 500,
+  "unit": "px",
+  "label": "Autoplay Speed",
+  "default": 2000
+},
+
+
+
+      {
+        "type": "range",
+        "id": "our_shop_container_padding_top_desktop",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Our Shop Container Padding Top For Desktop",
+        "default": 50
+        },
+        {
+        "type": "range",
+        "id": "our_shop_container_padding_bottom_desktop",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Our Shop Container Padding Bottom For Desktop",
+        "default": 50
+        },
+        {
+        "type": "range",
+        "id": "our_shop_container_padding_left_desktop",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Our Shop Container Padding Left For Desktop",
+        "default": 40
+        },
+        {
+        "type": "range",
+        "id": "our_shop_container_padding_right_desktop",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Our Shop Container Padding Right For Desktop",
+        "default": 40
+        },
+        {
+        "type": "range",
+        "id": "our_shop_container_padding_top_mobile",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Our Shop Container Padding Top For Mobile",
+        "default": 20
+        },
+        {
+        "type": "range",
+        "id": "our_shop_container_padding_bottom_mobile",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Our Shop Container Padding Bottom For Mobile",
+        "default": 20
+        },
+        {
+        "type": "range",
+        "id": "our_shop_container_padding_left_mobile",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Our Shop Container Padding Left For Mobile",
+        "default": 20
+        },
+        {
+        "type": "range",
+        "id": "our_shop_container_padding_right_mobile",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Our Shop Container Padding Right For Mobile",
+        "default": 20
+        },
+        {
+        "type": "color",
+        "id": "our_shop_container_background_color",
+        "label": "Our Shop Container Background Color",
+        "default": "#ffffff"
+        },
+        {
+        "type": "richtext",
+        "id": "ourshop_heading",
+        "label": "Our Shop Heading Text"
+        },
+        {
+        "type": "color",
+        "id": "ourshop_heading_color",
+        "label": "Our Shop Heading Color",
+        "default": "#F68E1E"
+        },
+        {
+        "type": "range",
+        "id": "ourshop_heading_font_size_desktop",
+        "min": 1,
+        "max": 72,
+        "step": 1,
+        "unit": "px",
+        "label": "Our Shop Heading Font Size For Desktop",
+        "default": 40
+        },
+        {
+        "type": "range",
+        "id": "ourshop_heading_font_size_tablet",
+        "min": 1,
+        "max": 72,
+        "step": 1,
+        "unit": "px",
+        "label": "Our Shop Heading Font Size For Tablet",
+        "default": 30
+        },
+        {
+        "type": "range",
+        "id": "ourshop_heading_font_size_mobile",
+        "min": 1,
+        "max": 72,
+        "step": 1,
+        "unit": "px",
+        "label": "Our Shop Heading Font Size For Mobile",
+        "default": 20
+        },
+        {
+        "type": "range",
+        "id": "ourshop_heading_font_weight",
+        "min": 100,
+        "max": 900,
+        "step": 100,
+        "unit": "px",
+        "label": "Our Shop Heading Font Weight",
+        "default": 600
+        },
+
+        {
+        "type": "range",
+        "id": "ourshop_heading_underline_thickness",
+        "min": 1,
+        "max": 10,
+        "step": 1,
+        "unit": "px",
+        "label": "Our Shop Heading Underline Thickness",
+        "default": 4
+        },
+        {
+        "type": "color",
+        "id": "ourshop_heading_underline_color",
+        "label": "Our Shop Heading Underline Color",
+        "default": "#231F20"
+        },
+        {
+        "type": "range",
+        "id": "ourshop_heading_margin_bottom_desktop",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Our Shop Heading Margin Bottom For Desktop",
+        "default": 40
+        },
+        {
+        "type": "range",
+        "id": "ourshop_heading_margin_bottom_mobile",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Our Shop Heading Margin Bottom For Mobile",
+        "default": 20
+        },
+        {
+            "type": "color",
+            "id": "ourshop_image_text_color",
+            "label": "Our Shop Image Title Color",
+            "default": "#231F20"
+            },
+            {
+            "type": "range",
+            "id": "ourshop_image_text_font_size_desktop",
+            "min": 1,
+            "max": 72,
+            "step": 1,
+            "unit": "px",
+            "label": "Our Shop Image Title Font size Desktop",
+            "default": 22
+            },
+            {
+            "type": "range",
+            "id": "ourshop_image_text_font_size_mobile",
+            "min": 1,
+            "max": 72,
+            "step": 1,
+            "unit": "px",
+            "label": "Our Shop Image Title Font size Mobile",
+            "default": 16
+            },
+            {
+            "type": "range",
+            "id": "ourshop_image_text_font_weight",
+            "min": 100,
+            "max": 900,
+            "step": 100,
+            "unit": "px",
+            "label": "Our Shop Image Title Font Weight",
+            "default": 400
+            }
+  ],
+       "blocks"  : [
+             {
+                 "type":"Brand_Logo",
+                 "name":"Brand Logo blocks",
+                 "settings":[
+
+                             {
+                              "type": "image_picker",
+                              "id": "ourshop_images",
+                              "label": "Brand Logo Image"
+                             },
+                            {
+                              "type": "richtext",
+                              "id": "slider_image_text",
+                              "label": "Image Title"
+                             },
+                             {
+                            "type": "url",
+                            "id": "ourshop_images_link",
+                            "label": "Our Shop Link"
+                              }
+                             ]
+
+               }
+               ],
+  "presets": [
+    {
+      "name": "Benefit Slider"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,399 @@
+<div class="{{ section.id }}">
+  <div class="banner_main_section">
+    <div class="banner_image_container">
+      <div class="dark_shadow">
+        <div class="banner_textarea">
+          <h1 class="banner_heading">{{ section.settings.banner_heading }}</h1>
+          <div class="banner_paragraph">{{ section.settings.banner_paragraph }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<style>
+       .{{section.id}} .banner_main_section{
+           position: relative;
+       }
+
+
+       .{{section.id}} .banner_textarea{
+         max-width: 1000px;
+         margin: 0 auto;
+         padding:{{ section.settings.main_padding_top }}px {{ section.settings.main_padding_right }}px {{ section.settings.main_padding_bottom }}px {{ section.settings.main_padding_left }}px;
+         position: absolute;
+         left: 50%;
+         top: 50%;
+         width: 100%;
+         transform: translate(-50%, -50%);
+       }
+
+     .{{ section.id }} .banner_image_container{
+         {% if section.settings.bg_image_picker_meta !=blank %}
+         background-image: url('{{ section.settings.bg_image_picker_meta | img_url: 'master' }}  ');
+         {% elsif section.settings.bg_image_picker != blank %}
+         background-image: url('{{ section.settings.bg_image_picker | img_url: 'master' }}  ');
+         {% else %}
+         background-color:{{ section.settings.bg_color }};
+         {% endif %}
+         width: 100%;
+         background-size: cover;
+         background-position: center;
+         background-repeat: no-repeat;
+          {% if section.settings.specific_height == false %}
+            padding-bottom: calc(100% / ({{ section.settings.width }} / {{ section.settings.height }}));
+          {% endif %}
+          {% if section.settings.specific_height %}
+         height: {{ section.settings.height_for_desktop }}vh;
+            {% endif %}
+         position: relative;
+
+     }
+      .{{ section.id }}  .dark_shadow{
+         background: black;
+         opacity: {{ section.settings.shadow_opacity }};
+         width: 100%;
+         height: 100%;
+       }
+
+     .{{ section.id }} .banner_heading{
+       color: {{ section.settings.heading_color }} ;
+       font-size:{{ section.settings.heading_font_size }}px ;
+       font-weight:{{ section.settings.heading_font_weight }} ;
+       margin-bottom:{{ section.settings.heading_margin_bottom }}px ;
+       font-family: Lato;
+       line-height: normal;
+       text-align: center;
+     }
+    .{{ section.id }} .banner_paragraph {
+       color: {{ section.settings.paragraph_color }} ;
+       font-size:{{ section.settings.paragraph_font_size }}px ;
+       font-weight:{{ section.settings.paragraph_font_weight }} ;
+       font-family: Lato;
+       line-height: normal;
+       text-align: center;
+     }
+   @media only screen and (min-width: 1600px) {
+   .{{ section.id }} .banner_image_container{
+       {% if section.settings.specific_height %}
+       height: {{ section.settings.height_for_2560 }}vh;
+      {% endif %}
+       }
+   }
+  @media only screen and (max-width: 600px) {
+  .{{ section.id }} .banner_image_container{
+         {% if section.settings.bg_image_picker_mobile != blank %}
+         background-image: url('{{ section.settings.bg_image_picker_mobile | img_url: 'master' }}  ');
+         {% else %}
+         background-color:{{ section.settings.bg_color }};
+         background-image: none;
+         {% endif %}
+         }
+   }
+
+
+      @media only screen and (max-width: 900px) {
+     .{{ section.id }} .banner_image_container{
+       {% if section.settings.specific_height %}
+       height:{{ section.settings.height_for_mobile }}vh;
+      {% endif %}
+       }
+     .{{ section.id }}  .banner_textarea{
+       padding:{{ section.settings.main_padding_top_mobile }}px {{ section.settings.main_padding_right_mobile }}px {{ section.settings.main_padding_bottom_mobile }}px {{ section.settings.main_padding_left_mobile }}px;
+       max-width: 600px;
+     }
+       .{{ section.id }} .banner_heading{
+       font-size:{{ section.settings.heading_font_size_mobile }}px ;
+
+       }
+        .{{ section.id }} .banner_paragraph {
+       font-size:{{ section.settings.paragraph_font_size_mobile }}px ;
+
+        }
+
+
+      }
+</style>
+{% schema %}
+    {
+  "name": "Banner Image With Text",
+  "settings": [
+
+         {
+        "type": "header",
+        "content": "Section Height Settings"
+         },
+        {
+          "type": "checkbox",
+          "id": "specific_height",
+          "label": "Show Specific Height",
+          "default": false,
+          "info": "If you use specific height check this box otherwise height set on image dimension settings is below"
+        },
+        {
+          "type": "number",
+          "id": "width",
+          "label": "Banner Width",
+          "default": 1440
+        },
+        {
+          "type": "number",
+          "id": "height",
+          "label": "Banner Height",
+          "default": 600
+        },
+        {
+        "type": "range",
+        "id": "height_for_2560",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "vh",
+        "label": "Section Height On 2560px",
+        "default": 50
+        },
+        {
+        "type": "range",
+        "id": "height_for_desktop",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "vh",
+        "label": "Section Height On Desktop",
+        "default": 70
+        },
+        {
+        "type": "range",
+        "id": "height_for_mobile",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "vh",
+        "label": "Section Height On Mobile",
+        "default": 100
+        },
+
+        {
+        "type": "header",
+        "content": " Text Area padding Settings"
+         },
+         {
+        "type": "range",
+        "id": "main_padding_top",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding Top For Desktop",
+        "default": 40
+        },
+        {
+        "type": "range",
+        "id": "main_padding_right",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding Right For Desktop",
+        "default": 40
+        },
+        {
+        "type": "range",
+        "id": "main_padding_bottom",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding Bottom For Desktop",
+        "default": 40
+        },
+        {
+        "type": "range",
+        "id": "main_padding_left",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding Left For Desktop",
+        "default": 40
+        },
+        {
+        "type": "range",
+        "id": "main_padding_top_mobile",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding Top For Mobile",
+        "default": 20
+        },
+        {
+        "type": "range",
+        "id": "main_padding_right_mobile",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding Right For Mobile",
+        "default": 20
+        },
+        {
+        "type": "range",
+        "id": "main_padding_bottom_mobile",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding Bottom For Mobile",
+        "default": 20
+        },
+        {
+        "type": "range",
+        "id": "main_padding_left_mobile",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding Left For Mobile",
+        "default": 20
+        },
+
+          {
+        "type": "header",
+        "content": "Background Image Settings"
+         },
+        {
+        "type": "image_picker",
+        "id": "bg_image_picker",
+        "label": "Background Image"
+        },
+         {
+        "type": "image_picker",
+        "id": "bg_image_picker_mobile",
+        "label": "Background Image For Mobile"
+        },
+        {
+      "type": "color",
+      "id": "bg_color",
+      "label": "BG Color",
+      "default": "#000000"
+       },
+
+       {
+      "type": "range",
+      "id": "shadow_opacity",
+      "min": 0,
+      "max": 1,
+      "step": 0.1,
+      "unit": "px",
+      "label": "Banner Shadow Opacity",
+      "default": 0.2
+       },
+        {
+        "type": "header",
+        "content": "Heading Section Settings"
+         },
+        {
+        "type": "richtext",
+        "id": "banner_heading",
+        "label": "Heading Text"
+        },
+        {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#F68E1E"
+       },
+       {
+      "type": "range",
+      "id": "heading_font_size",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading Font Size",
+      "default": 50
+      },
+      {
+      "type": "range",
+      "id": "heading_font_size_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading Font Size Mobile",
+      "default": 30
+      },
+      {
+      "type": "range",
+      "id": "heading_font_weight",
+      "min": 100,
+      "max": 900,
+      "step": 100,
+      "unit": "px",
+      "label": "Heading Font Weight",
+      "default": 700
+      },
+      {
+      "type": "range",
+      "id": "heading_margin_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading Margin Bottom",
+      "default": 20
+      },
+    {
+        "type": "header",
+        "content": "Paragraph Section Settings"
+         },
+        {
+        "type": "richtext",
+        "id": "banner_paragraph",
+        "label": "Paragraph Text"
+        },
+        {
+      "type": "color",
+      "id": "paragraph_color",
+      "label": "Paragraph Color",
+      "default": "#A7ADB4"
+       },
+      {
+      "type": "range",
+      "id": "paragraph_font_size",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Paragraph Font Size",
+      "default": 20
+      },
+      {
+      "type": "range",
+      "id": "paragraph_font_size_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Paragraph Font Size Mobile",
+      "default": 15
+      },
+      {
+      "type": "range",
+      "id": "paragraph_font_weight",
+      "min": 100,
+      "max": 900,
+      "step": 100,
+      "unit": "px",
+      "label": "Paragraph Font Weight",
+      "default": 400
+      }
+
+  ],
+ "presets": [
+    {
+      "name": "Custom Banner Image With Text"
+    }
+  ]
+}
+{% endschema %}

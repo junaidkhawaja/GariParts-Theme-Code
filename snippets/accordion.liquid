@@ -1,0 +1,70 @@
+
+ <head>
+    {{ 'accordion.css' | asset_url | stylesheet_tag }}
+   <script src="{{ 'accordion.js' | asset_url }}" defer="defer"></script>
+ </head>
+
+
+<ul class="accordion">
+  {% if product.description != blank %}
+<li class="accordion-item is-active">
+<h3 class="accordion-thumb">{{ block.settings.description_title }}</h3>
+<h4 class="accordion-panel"> {{ product.description }}</h4>
+</li>
+    {% endif %}
+    {% if product.metafields.custom.second_tab_value  != blank %}
+<li class="accordion-item">
+<h3 class="accordion-thumb">{{ block.settings.detail_title }}</h3>
+<div class="accordion-panel">
+  <div class="accordion-rich-text">
+      {{ block.settings.accordion_text }}
+      {% if product.metafields.custom.dimentions_details_image != blank  %}
+      <img src="{{ product.metafields.custom.dimentions_details_image | img_url: 'master' }}">
+       {% endif %} 
+  </div>
+</div>
+</li>
+      {% endif %}
+    {% if product.metafields.custom.first_tab_value != blank %}
+<li class="accordion-item">
+<h3 class="accordion-thumb">{{ block.settings.video_title }}</h3>
+<div class="accordion-panel">
+  {% assign value = product.metafields.custom.first_tab_value %}
+  
+ {% if value != blank %}
+        <video
+          class="video"
+          {% if settings['autoplay-video'] %}
+            autoplay loop muted playsinline
+          {% endif %}
+          {% if settings.controls_video %}
+            controls
+          {% endif %}
+        >
+          <source src="{{ product.metafields.custom.first_tab_value | file_url }}" type="video/mp4">
+        </video>
+  {% endif %}
+</div>
+</li>
+      {% endif %}
+   {% if block.settings.accordion_page != blank %}
+  <li class="accordion-item">
+<h3 class="accordion-thumb">{{ block.settings.accordion_page.title }}</h3>
+<div class="accordion-panel">
+  <div class="page-width page-content">
+   {{ block.settings.accordion_page.content }}
+   
+  </div>
+</div>
+</li>
+  {% endif %}
+   {% if product.metafields.custom.faq_page != blank %}
+  <li class="accordion-item">
+<h3 class="accordion-thumb">{{ block.settings.faq_title }}</h3>
+<div class="accordion-panel">
+  {{ product.metafields.custom.faq_page.value.content }}
+</div>
+</li>
+  {% endif %}
+   
+</ul>

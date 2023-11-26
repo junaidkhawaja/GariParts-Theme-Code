@@ -1,0 +1,555 @@
+<div class="{{ section.id }}">
+  <div class="our_services_main_container">
+    <div class="our_services_container">
+      {% for block in section.blocks %}
+        <div class="ourservices_content">
+          <a href="{{ block.settings.services_images_link }}" target="_blank" class="services_images">
+            <img class="service_img" src="{{ block.settings.services_images | img_url: 'master' }}">
+            <img class="service_hover" src="{{ block.settings.services_images_hover | img_url: 'master' }}">
+
+            <h5 class="services_title">
+              {{ block.settings.services_title }}
+            </h5>
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+<style>
+              .our_services_main_container{
+                  padding-top:{{ section.settings.our_services_main_container_padding_top_desktop }}px;
+                  padding-bottom:{{ section.settings.our_services_main_container_padding_bottom_desktop }}px;
+                  padding-left:{{ section.settings.our_services_main_container_padding_left_desktop }}px;
+                  padding-right:{{ section.settings.our_services_main_container_padding_right_desktop }}px;
+                  background-color: {{ section.settings.our_services_main_container_bg_color }};
+                  max-width: 1440px;
+                  width: 100%;
+                  margin: 0 auto;
+              }
+
+
+          .our_services_container{
+                  border-radius: 100px;
+                  border: {{ section.settings.our_services_container_border_thickness }}px solid {{ section.settings.our_services_container_border_color }};
+                  background-color: {{ section.settings.our_services_container_bg_color }};
+                  box-shadow: {{ section.settings.our_services_container_x_offset }}px
+                  {{ section.settings.our_services_container_y_offset }}px {{ section.settings.our_services_container_blur }}px
+                  {{ section.settings.our_services_container_spread }}px {{ section.settings.our_services_container_shadow_color }}7d;
+                  padding-top:{{ section.settings.our_services_container_padding_top_desktop }}px;
+                  padding-bottom:{{ section.settings.our_services_container_padding_bottom_desktop }}px;
+                  padding-left:{{ section.settings.our_services_container_padding_left_desktop }}px;
+                  padding-right:{{ section.settings.our_services_container_padding_right_desktop }}px;
+                  display: flex;
+                  justify-content: space-around;
+                  flex-wrap: wrap;
+
+                  }
+
+            .ourservices_content{
+                border-radius: 100px;
+                border: {{ section.settings.ourservices_content_border_thickness }}px solid {{ section.settings.ourservices_content_border_color }};
+                background: {{ section.settings.ourservices_content_bg_color }};
+                box-shadow:  0px 1px 4px 0px {{ section.settings.ourservices_content_shadow_color }};;
+                width: 32%;
+                max-width: 350px;
+                }
+            .ourservices_content:hover{
+              background: #F68E1E;
+            }
+
+            .ourservices_content:hover .services_title p{
+              color: #231F20;
+            }
+    .service_hover{
+      display: none;
+    }
+  .ourservices_content:hover .service_hover{
+              display: block;
+            }
+            .ourservices_content:hover .service_img{
+              display: none;
+            }
+            .services_images {
+                  display: flex;
+                  align-items: center;
+                  justify-content: flex-start;
+                  }
+              .services_title{
+                  margin: 0;
+              }
+            .services_images_hover {
+                  display: flex;
+                  align-items: center;
+                  justify-content: flex-start;
+                  justify-content: center;
+                  }
+              .services_title{
+                  margin: 0;
+              }
+         .services_title p{
+                  color:{{ section.settings.services_title_font_color }};
+                  font-size:{{ section.settings.services_title_font_size_desktop }}px;
+                  font-weight:{{ section.settings.services_title_font_weight }};
+                  margin: 0;
+                  font-family: 'Poppins', sans-serif;
+              }
+
+            .services_images {
+              text-decoration: none;
+              padding:15px 15px 15px 30px;
+            }
+
+            .services_images img{
+              width: 40px;
+              margin-right: 20px
+            }
+
+        @media screen and (max-width: 990px){
+
+        .ourservices_content{
+
+           width: 48%;
+           margin: 15px 0px;
+        }
+
+        .services_title p{
+
+           font-size:{{ section.settings.services_title_font_size_tablet }}px;
+        }
+    .our_services_container{
+          border-radius: 50px;
+         {{ section.settings.our_services_container_shadow_color }}99;
+     }
+        }
+       @media screen and (max-width: 650px){
+
+
+       .our_services_main_container{
+                  padding-top:{{ section.settings.our_services_main_container_padding_top_mobile }}px;
+                  padding-bottom:{{ section.settings.our_services_main_container_padding_bottom_mobile }}px;
+                  padding-left:{{ section.settings.our_services_main_container_padding_left_mobile }}px;
+                  padding-right:{{ section.settings.our_services_main_container_padding_right_mobile }}px;
+                  margin-bottom:{{ section.settings.our_services_main_container_margin_bottom_mobile }}px;
+              }
+     .our_services_container{
+          border-radius: 20px;
+         {{ section.settings.our_services_container_shadow_color }}99;
+     }
+
+
+
+        .ourservices_content{
+
+           width: 100%;
+
+        }
+
+        .services_title p{
+
+           font-size:{{ section.settings.services_title_font_size_mobile }}px;
+        }
+
+        }
+</style>
+
+{% schema %}
+    {
+  "name": "Our Services",
+  "settings": [
+
+        {
+        "type": "range",
+        "id": "our_services_main_container_padding_top_desktop",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Our Services Main Container Padding Top For Desktop",
+        "default": 50
+        },
+        {
+        "type": "range",
+        "id": "our_services_main_container_padding_bottom_desktop",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Our Services Main Container Padding Bottom For Desktop",
+        "default": 50
+        },
+        {
+        "type": "range",
+        "id": "our_services_main_container_padding_left_desktop",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Our Services Main Container Padding Left For Desktop",
+        "default": 40
+        },
+        {
+        "type": "range",
+        "id": "our_services_main_container_padding_right_desktop",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Our Services Main Container Padding Right For Desktop",
+        "default": 40
+        },
+        {
+        "type": "range",
+        "id": "our_services_main_container_padding_top_mobile",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Our Services Main Container Padding Top For Mobile",
+        "default": 20
+        },
+        {
+        "type": "range",
+        "id": "our_services_main_container_padding_bottom_mobile",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Our Services Main Container Padding Bottom For Mobile",
+        "default": 20
+        },
+        {
+        "type": "range",
+        "id": "our_services_main_container_padding_left_mobile",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Our Services Main Container Padding Left For Mobile",
+        "default": 20
+        },
+        {
+        "type": "range",
+        "id": "our_services_main_container_padding_right_mobile",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Our Services Main Container Padding Right For Mobile",
+        "default": 20
+        },
+        {
+        "type": "range",
+        "id": "our_services_main_container_margin_bottom_desktop",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Our Services Main Containter Margin Bottom For Desktop",
+        "default": 40
+        },
+        {
+        "type": "range",
+        "id": "our_services_main_container_margin_bottom_mobile",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Our Services Main Containter Margin Bottom For Mobile",
+        "default": 20
+        },
+        {
+        "type": "color",
+        "id": "our_services_main_container_bg_color",
+        "label": "Our Services Main Containter Bg Color",
+        "default": "#ffffff"
+        },
+
+        {
+        "type": "range",
+        "id": "our_services_container_padding_top_desktop",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Our Services Container Padding Top For Desktop",
+        "default": 30
+        },
+        {
+        "type": "range",
+        "id": "our_services_container_padding_bottom_desktop",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Our Services Container Padding Bottom For Desktop",
+        "default": 30
+        },
+        {
+        "type": "range",
+        "id": "our_services_container_padding_left_desktop",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Our Services Container Padding Left For Desktop",
+        "default": 20
+        },
+        {
+        "type": "range",
+        "id": "our_services_container_padding_right_desktop",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Our Services Container Padding Right For Desktop",
+        "default": 20
+        },
+        {
+        "type": "range",
+        "id": "our_services_container_padding_top_mobile",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Our Services Container Padding Top For Mobile",
+        "default": 20
+        },
+        {
+        "type": "range",
+        "id": "our_services_container_padding_bottom_mobile",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Our Services Container Padding Bottom For Mobile",
+        "default": 20
+        },
+        {
+        "type": "range",
+        "id": "our_services_container_padding_left_mobile",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Our Services Container Padding Left For Mobile",
+        "default": 20
+        },
+        {
+        "type": "range",
+        "id": "our_services_container_padding_right_mobile",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Our Services Container Padding Right For Mobile",
+        "default": 20
+        },
+
+
+
+
+        {
+        "type": "range",
+        "id": "our_services_container_margin_bottom_desktop",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Our Services Margin Bottom For Desktop",
+        "default": 40
+        },
+        {
+        "type": "range",
+        "id": "our_services_container_margin_bottom_mobile",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Our Services Margin Bottom For Mobile",
+        "default": 20
+        },
+        {
+        "type": "color",
+        "id": "our_services_container_bg_color",
+        "label": "Our Services Containter Bg Color",
+        "default": "#ffffff"
+        },
+        {
+        "type": "range",
+        "id": "our_services_container_border_thickness",
+        "min": 0,
+        "max": 5,
+        "step": 1,
+        "unit": "px",
+        "label": "Our Services Container border Thickness",
+        "default": 1
+        },
+        {
+        "type": "color",
+        "id": "our_services_container_border_color",
+        "label": "Our Services Containter Border Color",
+        "default": "#F68E1E"
+        },
+        {
+        "type": "range",
+        "id": "our_services_container_x_offset",
+        "min": 0,
+        "max": 30,
+        "step": 1,
+        "unit": "px",
+        "label": "Our Services Container X Offset Shadow",
+        "default": 7
+        },
+        {
+        "type": "range",
+        "id": "our_services_container_y_offset",
+        "min": 0,
+        "max": 30,
+        "step": 1,
+        "unit": "px",
+        "label": "Our Services Container Y Offset Shadow",
+        "default": 7
+        },
+        {
+        "type": "range",
+        "id": "our_services_container_blur",
+        "min": 0,
+        "max": 30,
+        "step": 1,
+        "unit": "px",
+        "label": "Our Services Container Shadow Blur",
+        "default": 5
+        },
+        {
+        "type": "range",
+        "id": "our_services_container_spread",
+        "min": 0,
+        "max": 30,
+        "step": 1,
+        "unit": "px",
+        "label": "Our Services Container Shadow Spread",
+        "default": 0
+        },
+        {
+        "type": "color",
+        "id": "our_services_container_shadow_color",
+        "label": "Our Services Containter Shadow Color",
+        "default": "#F68E1E"
+        },
+        {
+        "type": "range",
+        "id": "ourservices_content_border_thickness",
+        "min": 0,
+        "max": 30,
+        "step": 1,
+        "unit": "px",
+        "label": "Our Services content Border Thickness",
+        "default": 1
+        },
+        {
+        "type": "color",
+        "id": "ourservices_content_border_color",
+        "label": "Our Services content Border Color",
+        "default": "#F68E1E"
+        },
+        {
+        "type": "color",
+        "id": "ourservices_content_bg_color",
+        "label": "Our Services content Bg Color",
+        "default": "#ffffff"
+        },
+        {
+        "type": "color",
+        "id": "ourservices_content_shadow_color",
+        "label": "Our Services content Shadow Color",
+        "default": "#F68E1E"
+        },
+        {
+        "type": "color",
+        "id": "services_title_font_color",
+        "label": "Services Title Font Color",
+        "default": "#F68E1E"
+        },
+        {
+        "type": "range",
+        "id": "services_title_font_size_desktop",
+        "min": 1,
+        "max": 72,
+        "step": 1,
+        "unit": "px",
+        "label": "Services Title Font Size For Desktop",
+        "default": 23
+        },
+        {
+        "type": "range",
+        "id": "services_title_font_size_tablet",
+        "min": 1,
+        "max": 72,
+        "step": 1,
+        "unit": "px",
+        "label": "Services Title Font Size For Tablet",
+        "default": 20
+        },
+        {
+        "type": "range",
+        "id": "services_title_font_size_mobile",
+        "min": 1,
+        "max": 72,
+        "step": 1,
+        "unit": "px",
+        "label": "Services Title Font Size For Mobile",
+        "default": 15
+        },
+        {
+        "type": "range",
+        "id": "services_title_font_weight",
+        "min": 100,
+        "max": 900,
+        "step": 100,
+        "unit": "px",
+        "label": "Services Title Font Weight",
+        "default": 600
+        }
+
+
+
+
+  ],
+       "blocks"  : [
+             {
+                 "type":"Our_services",
+                 "name":"Services blocks",
+                 "settings":[
+
+                             {
+                              "type": "image_picker",
+                              "id": "services_images",
+                              "label": "Our Services Image"
+                             },
+                             {
+                              "type": "image_picker",
+                              "id": "services_images_hover",
+                              "label": "Our Services Image Hover"
+                             },
+                            {
+                              "type": "richtext",
+                              "id": "services_title",
+                              "label": "Services Title"
+                             },
+                             {
+                            "type": "url",
+                            "id": "services_images_link",
+                            "label": "Our Shop Link"
+                              }
+                             ]
+
+               }
+               ],
+  "presets": [
+    {
+      "name": "Our Services"
+    }
+  ]
+}
+{% endschema %}

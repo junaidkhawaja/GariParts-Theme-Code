@@ -1,0 +1,431 @@
+<!-- Section Name: custom-service-benefit.liquid -->
+
+<div id="sid-{{ section.id }}">
+  <div class="custom_service_benefit">
+    <div class="custom_service_container">
+      <div class="custom_cont">
+        <div class="service_heading">
+          <h2>{{ section.settings.heading }}</h2>
+        </div>
+        <div class="custom_service_details">
+          <div class="service_image">
+            <img src="{{ section.settings.main_image | img_url: 'master' }}">
+          </div>
+          <div class="service_tab">
+            {% for block in section.blocks %}
+              <a href="{{ block.settings.redirection_link }}" class="service_tab_div">
+                <div class="service_tab_text">
+                  <h2 class="service_onHover">{{ block.settings.text }}</h2>
+                </div>
+                <div class="service_tab_image">
+                  <img src="{{ block.settings.image | img_url: 'master' }}">
+                </div>
+              </a>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="custom_button">
+          <a href="{{ section.settings.btn_link }}" class="custom_button_link">{{ section.settings.btn_text }}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<style>
+  #sid-{{ section.id }} .custom_service_benefit{
+    width: 100%;
+    background: {{ section.settings.background_color }};
+  }
+  #sid-{{ section.id }} .custom_service_container{
+    max-width: {{ section.settings.page_size }}px;
+    width:100%; margin: 0 auto;
+    padding: {{ section.settings.top_padding }}px {{ section.settings.right_padding }}px {{ section.settings.bottom_padding }}px {{ section.settings.left_padding }}px;
+  }
+  #sid-{{ section.id }} .service_heading h2 p{
+    text-align: center;
+    font-size: clamp({{section.settings.main_heading_fz_mb}}px, ({{section.settings.main_heading_fz}} / 1440) * 100vw, {{section.settings.main_heading_fz}}px);
+    padding: 20px;
+    border: 1px solid #f68e1e;
+    background: {{section.settings.main_heading_bg}};
+    color: {{section.settings.main_heading_fc}};
+    font-weight: {{section.settings.main_heading_fw}};
+    margin-bottom: 20px;
+    line-height: 1;
+  }
+  #sid-{{ section.id }} .custom_service_details{
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  .service_image{
+    display: flex;
+    width: 50%;
+  }
+  #sid-{{ section.id }} img{
+    width: 100%;
+  }
+  #sid-{{ section.id }} .service_tab{
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  #sid-{{ section.id }} .service_tab_div{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+    border: 1px solid #f68e1e;
+    background: {{ section.settings.srvc_tab_bg_clr }};
+    padding: 5px 20px
+  }
+  #sid-{{ section.id }} .service_tab_image{
+    display: flex;
+    width: auto;
+    height: 50px;
+    max-height: 50px;
+  }
+  #sid-{{ section.id }} .service_tab_text{
+    width: 70%;
+  }
+  #sid-{{ section.id }} .service_tab_image{
+    max-width: 20%;
+  }
+  #sid-{{ section.id }} .service_tab_text h2 p{
+    font-size: clamp({{ section.settings.srvc_tab_fs_mb }}px, ({{ section.settings.srvc_tab_fs }} / 1440) * 100vw, {{ section.settings.srvc_tab_fs }}px);
+    font-weight: {{ section.settings.srvc_tab_fw }};
+    color: {{ section.settings.srvc_tab_f_clr }};
+    line-height: 1;
+  }
+  #sid-{{ section.id }} .service_tab_div:hover{
+    background: {{ section.settings.srvc_tab_bg_clr_hover }};
+  }
+  #sid-{{ section.id }} .service_tab_div:hover .service_onHover > p{
+    color: {{ section.settings.srvc_tab_f_clr_hover }};
+  }
+  #sid-{{ section.id }} .custom_button{
+    border: 2px solid #F68E1E;
+    background: rgb(19 37 48);
+    padding: 15px 20px;
+    transition: .5s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    margin: 15px auto 0;
+  }
+  #sid-{{ section.id }} .custom_button_link{
+    color: #f68e1e;
+    text-align: center;
+    font-family: Lato,sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1;
+  }
+  #sid-{{ section.id }} .custom_button:hover {
+    background: #F68E1E;
+    border: 2px solid rgb(19 37 48);
+  }
+  #sid-{{ section.id }} .custom_button:hover .custom_button_link {
+    color: #fff !important;
+  }
+  #sid-{{ section.id }} .custom_cont{
+    box-shadow: 0px 0px 10px 0px #000;
+    padding: 20px;
+  }
+
+
+  @media only screen and (max-width: 767px){
+    #sid-{{ section.id }} .custom_service_container{
+      padding: {{ section.settings.top_padding_mb }}px {{ section.settings.right_padding_mb }}px {{ section.settings.bottom_padding_mb }}px {{ section.settings.left_padding_mb }}px;
+    }
+    #sid-{{ section.id }} .custom_service_details{
+      flex-direction: column;
+    }
+    #sid-{{ section.id }} .service_image {
+      width: 100%;
+    }
+    #sid-{{ section.id }} .service_tab {
+      width: 100%;
+    }
+    #sid-{{ section.id }} .service_tab_image{
+      height: auto;
+      max-height: none;
+      width: 100%;
+    }
+  }
+</style>
+{% schema %}
+  {
+    "name": "Service Benefit",
+    "settings": [
+      {
+  "type": "header",
+  "content": "Section Settings"
+},
+{
+  "type": "number",
+  "id": "page_size",
+  "label": "Section Container Size",
+  "default": 1440
+},
+{
+  "type": "color",
+  "id": "background_color",
+  "label": "Background Color",
+  "default": "#ffffff"
+},
+{
+  "type": "range",
+  "id": "top_padding",
+  "min": 0,
+  "max": 100,
+  "step": 1,
+  "unit": "px",
+  "label": "Top Padding",
+  "default": 80
+},
+{
+  "type": "range",
+  "id": "bottom_padding",
+  "min": 0,
+  "max": 100,
+  "step": 1,
+  "unit": "px",
+  "label": "Bottom Padding",
+  "default": 100
+},
+{
+  "type": "range",
+  "id": "right_padding",
+  "min": 0,
+  "max": 100,
+  "step": 1,
+  "unit": "px",
+  "label": "Right Padding",
+  "default":100
+},
+{
+  "type": "range",
+  "id": "left_padding",
+  "min": 0,
+  "max": 100,
+  "step": 1,
+  "unit": "px",
+  "label": "Left Padding",
+  "default": 100
+},
+{
+  "type": "range",
+  "id": "top_padding_mb",
+  "min": 0,
+  "max": 100,
+  "step": 1,
+  "unit": "px",
+  "label": "Top Padding Mobile",
+  "default": 40
+},
+{
+  "type": "range",
+  "id": "bottom_padding_mb",
+  "min": 0,
+  "max": 100,
+  "step": 1,
+  "unit": "px",
+  "label": "Bottom Padding Mobile",
+  "default": 40
+},
+{
+  "type": "range",
+  "id": "right_padding_mb",
+  "min": 0,
+  "max": 100,
+  "step": 1,
+  "unit": "px",
+  "label": "Right Padding Mobile",
+  "default":20
+},
+{
+  "type": "range",
+  "id": "left_padding_mb",
+  "min": 0,
+  "max": 100,
+  "step": 1,
+  "unit": "px",
+  "label": "Left Padding Mobile",
+  "default": 20
+},
+{
+  "type": "richtext",
+  "id": "heading",
+  "label": "Heading"
+},
+{
+"type": "range",
+"id": "main_heading_fz",
+"min": 6,
+"max": 100,
+"step": 1,
+"unit": "px",
+"label": "Font Size",
+"default": 30
+},
+{
+"type": "range",
+"id": "main_heading_fw",
+"min": 100,
+"max": 900,
+"step": 100,
+"unit": "px",
+"label": "Font Weight",
+"default": 600
+},
+{
+"type": "color",
+"id": "main_heading_fc",
+"label": "Font Color",
+"default": "#fff"
+},
+{
+"type": "color",
+"id": "main_heading_bg",
+"label": "Background Color",
+"default": "#f68e1e"
+},
+{
+"type": "range",
+"id": "main_heading_fz_mb",
+"min": 6,
+"max": 100,
+"step": 1,
+"unit": "px",
+"label": "Font Size Mobile",
+"default": 20
+},
+{
+"type": "header",
+"content": "Block Section Settings"
+},
+{
+"type": "header",
+"content": "Service's Block Settings"
+},
+{
+"type": "color",
+"id": "srvc_tab_f_clr",
+"label": "Font Color",
+"default": "#000000"
+},
+{
+"type": "color",
+"id": "srvc_tab_bg_clr",
+"label": "Background Color",
+"default": "#FFFFFF"
+},
+
+{
+  "type": "image_picker",
+  "id": "main_image",
+  "label": "Icon Image"
+},
+{
+"type": "range",
+"id": "srvc_tab_fs",
+"min": 6,
+"max": 100,
+"step": 1,
+"unit": "px",
+"label": "Font Size",
+"default": 20
+},
+{
+"type": "range",
+"id": "srvc_tab_fs_mb",
+"min": 6,
+"max": 100,
+"step": 1,
+"unit": "px",
+"label": "Font Size For Mobile",
+"default": 18
+},
+{
+"type": "range",
+"id": "srvc_tab_fw",
+"min": 100,
+"max": 900,
+"step": 100,
+"unit": "px",
+"label": "Font Weight",
+"default": 600
+},
+{
+"type": "header",
+"content": "Service's Block Hover Settings"
+},
+{
+"type": "color",
+"id": "srvc_tab_f_clr_hover",
+"label": "Font Color",
+"default": "#FFFFFF"
+},
+{
+"type": "color",
+"id": "srvc_tab_bg_clr_hover",
+"label": "Background Color",
+"default": "#f68e1e"
+},
+{
+  "type": "text",
+  "id": "btn_text",
+  "label": "Button Text",
+  "default": "Get An Appointment"
+},
+{
+  "type": "url",
+  "id": "btn_link",
+  "label": "Button link"
+}
+
+    ],
+    "blocks":[
+    {
+        "name": "Service",
+      "type": "block",
+      "settings":[
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text"
+        },
+        {
+          "type": "url",
+          "id": "redirection_link",
+          "label": "Button redirection Link"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+
+
+      ]
+    }
+  ],
+    "presets": [
+    {
+      "name": "Service Benefit Block"
+
+    }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

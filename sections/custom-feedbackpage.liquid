@@ -1,0 +1,615 @@
+<div class="{{ section.id }}">
+  <div class="feedbackpage_section">
+    <div class="feedbackpage_container">
+      <div class="feedbackpage_heading_area">
+        <h1 class="feedbackpage_heading">{{ section.settings.feedbackpage_heading }}</h1>
+        <div class="feedbackpage_sub_head">{{ section.settings.feedbackpage_sub_head }}</div>
+      </div>
+      <div class="inquiries_blocks_container">
+        {% for block in section.blocks %}
+          <div class="feedbackpage_inquiries_blocks">
+            <div class="inquiries_title">{{ block.settings.inquiries_title }}</div>
+            <div class="inquiries_email">{{ block.settings.inquiries_email }}</div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+<style>
+     .{{ section.id }} .feedbackpage_section{
+      background-color: #f38e2e;
+      width: 100%;
+      padding:{{ section.settings.main_padding_top }}px {{ section.settings.main_padding_right }}px {{ section.settings.main_padding_bottom }}px {{ section.settings.main_padding_left }}px;
+      }
+
+      .{{ section.id }} .feedbackpage_container{
+       background-color:{{ section.settings.feedbackpage_container_bg_color }};
+       padding:{{ section.settings.padding_top }}px {{ section.settings.padding_right }}px {{ section.settings.padding_bottom }}px {{ section.settings.padding_left }}px;
+       max-width:{{section.settings.container_max_width}}px;
+       width: 100%;
+       margin: 0 auto;
+       border-radius: 30px;
+       box-shadow: 0px 5px 1px {{section.settings.shadow_color}};
+  }
+     }
+
+    .{{ section.id }} .feedbackpage_heading_area{
+       text-align:left;
+
+    }
+
+    .{{ section.id }} .feedbackpage_heading{
+      color:{{ section.settings.heading_color }};
+      font-size:{{ section.settings.heading_font_size }}px;
+      font-weight:{{ section.settings.heading_font_weight }};
+      margin-bottom:{{ section.settings.heading_margin_bottom }}px;
+      font-family: Lato;
+      line-height: 110%;
+      text-transform: capitalize;
+      letter-spacing: 0px;
+    }
+
+    .{{ section.id }} .feedbackpage_sub_head{
+      color:{{ section.settings.sub_heading_color }};
+      font-size:{{ section.settings.sub_heading_font_size }}px;
+      font-weight:{{ section.settings.sub_heading_font_weight }};
+      letter-spacing: 4px;
+      line-height: 130%;
+      text-transform: uppercase;
+      font-family: Lato;
+    }
+
+    .{{ section.id }} .feedbackpage_inquiries_blocks{
+     text-align:left;
+     display: flex;
+     flex-wrap: wrap;
+     gap: 15px;
+     margin-bottom: {{ section.settings.inquiries_blocks_margin_bottom }}px;
+    }
+
+
+    .{{ section.id }} .inquiries_title{
+      color:{{ section.settings.inquiries_title_color }};
+      font-size:{{ section.settings.inquiries_title_font_size }}px;
+      font-weight:{{ section.settings.inquiries_title_font_weight }};
+      font-family: Poppins;
+      line-height: normal;
+      letter-spacing: 0px;
+      text-transform: capitalize;
+
+    }
+
+    .{{ section.id }} .inquiries_email{
+      color:{{ section.settings.inquiries_email_color }};
+      font-size:{{ section.settings.inquiries_email_font_size }}px;
+      font-weight:{{ section.settings.inquiries_email_font_weight }};
+      line-height: 115%;
+      font-family: Poppins;
+      text-align: center;
+      text-transform: lowercase;
+
+    }
+
+    .{{ section.id }} .inquiries_blocks_container{
+     margin: {{ section.settings.blocks_margin_top_bottom }}px 0px ;
+    }
+
+    .{{ section.id }} .inquiries_email p strong{
+          background: black;
+          border: 1px solid {{ section.settings.email_border_color }};
+          padding: 0px 7px;
+          border-radius: 20px;
+          font-weight: 400;
+      }
+  @media only screen and (max-width: 900px) {
+
+    .{{ section.id }} .feedbackpage_section{
+
+      padding:{{ section.settings.main_padding_top_mobile }}px {{ section.settings.main_padding_right_mobile }}px {{ section.settings.main_padding_bottom_mobile }}px {{ section.settings.main_padding_left_mobile }}px;
+      }
+   .{{ section.id }} .feedbackpage_container{
+      padding:{{ section.settings.padding_top_mobile }}px {{ section.settings.padding_right_mobile }}px {{ section.settings.padding_bottom_mobile }}px {{ section.settings.padding_left_mobile }}px;
+  }
+    .{{ section.id }} .feedbackpage_heading{
+       font-size:{{ section.settings.heading_font_size_mobile }}px;
+       margin-bottom:{{ section.settings.heading_margin_bottom_mobile }}px;
+    }
+   .{{ section.id }} .feedbackpage_sub_head{
+      font-size:{{ section.settings.sub_heading_font_size_mobile }}px;
+   }
+
+  .{{ section.id }} .inquiries_title{
+  font-size:{{ section.settings.inquiries_title_font_size_mobile }}px;
+  }
+
+  .{{ section.id }} .inquiries_email{
+font-size:{{ section.settings.inquiries_email_font_size_mobile }}px;
+  }
+   .{{ section.id }} .feedbackpage_inquiries_blocks{
+      margin-bottom: {{ section.settings.inquiries_blocks_margin_bottom_mobile }}px;
+    }
+
+
+  .{{ section.id }} .inquiries_blocks_container{
+     margin: {{ section.settings.blocks_margin_top_bottom_mobile }}px 0px ;
+    }
+  }
+</style>
+
+{% schema %}
+    {
+  "name": "Feedback Page",
+  "settings": [
+     {
+        "type": "header",
+        "content": " Main Container padding Settings"
+        },
+         {
+        "type": "range",
+        "id": "main_padding_top",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding Top For Desktop",
+        "default": 40
+        },
+        {
+        "type": "range",
+        "id": "main_padding_right",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding Right For Desktop",
+        "default": 40
+        },
+        {
+        "type": "range",
+        "id": "main_padding_bottom",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding Bottom For Desktop",
+        "default": 40
+        },
+        {
+        "type": "range",
+        "id": "main_padding_left",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding Left For Desktop",
+        "default": 40
+        },
+        {
+        "type": "range",
+        "id": "main_padding_top_mobile",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding Top For Mobile",
+        "default": 20
+        },
+        {
+        "type": "range",
+        "id": "main_padding_right_mobile",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding Right For Mobile",
+        "default": 20
+        },
+        {
+        "type": "range",
+        "id": "main_padding_bottom_mobile",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding Bottom For Mobile",
+        "default": 20
+        },
+        {
+        "type": "range",
+        "id": "main_padding_left_mobile",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding Left For Mobile",
+        "default": 20
+        },
+
+      {
+        "type": "header",
+        "content": " Feedback Container padding Settings"
+      },
+
+          {
+        "type": "range",
+        "id": "container_max_width",
+        "min": 200,
+        "max": 1000,
+        "step": 10,
+        "unit": "px",
+        "label": "Container Max Width",
+        "default": 600
+        },
+        {
+        "type": "color",
+        "id": "feedbackpage_container_bg_color",
+        "label": "Container Background Color",
+        "default": "#231F20"
+        },
+        {
+        "type": "color",
+        "id": "shadow_color",
+        "label": "Container Shadow Color",
+        "default": "#ED4C95"
+        },
+         {
+        "type": "range",
+        "id": "padding_top",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding Top For Desktop",
+        "default": 40
+        },
+        {
+        "type": "range",
+        "id": "padding_right",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding Right For Desktop",
+        "default": 40
+        },
+        {
+        "type": "range",
+        "id": "padding_bottom",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding Bottom For Desktop",
+        "default": 40
+        },
+        {
+        "type": "range",
+        "id": "padding_left",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding Left For Desktop",
+        "default": 40
+        },
+        {
+        "type": "range",
+        "id": "padding_top_mobile",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding Top For Mobile",
+        "default": 20
+        },
+        {
+        "type": "range",
+        "id": "padding_right_mobile",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding Right For Mobile",
+        "default": 20
+        },
+        {
+        "type": "range",
+        "id": "padding_bottom_mobile",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding Bottom For Mobile",
+        "default": 20
+        },
+        {
+        "type": "range",
+        "id": "padding_left_mobile",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding Left For Mobile",
+        "default": 20
+        },
+
+      {
+        "type": "header",
+        "content": " Feedback Section Settings"
+      },
+      {
+        "type": "header",
+        "content": " Feedback Heading Section Settings"
+      },
+      {
+      "type": "richtext",
+      "id": "feedbackpage_heading",
+      "label": "Feedback Heading"
+      },
+      {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#FFFFFF"
+       },
+      {
+      "type": "range",
+      "id": "heading_font_size",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading Font Size",
+      "default": 68
+      },
+      {
+      "type": "range",
+      "id": "heading_font_size_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading Font Size Mobile",
+      "default": 36
+      },
+      {
+      "type": "range",
+      "id": "heading_font_weight",
+      "min": 100,
+      "max": 900,
+      "step": 100,
+      "unit": "px",
+      "label": "Heading Font Weight",
+      "default": 400
+      },
+      {
+      "type": "range",
+      "id": "heading_margin_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading Margin Bottom",
+      "default": 20
+      },
+      {
+      "type": "range",
+      "id": "heading_margin_bottom_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading Margin Bottom Mobile",
+      "default": 10
+      },
+      {
+        "type": "header",
+        "content": " Sub Heading Section Settings"
+      },
+      {
+      "type": "richtext",
+      "id": "feedbackpage_sub_head",
+      "label": "Sub Heading"
+      },
+      {
+      "type": "color",
+      "id": "sub_heading_color",
+      "label": "Sub Heading Color",
+      "default": "#FFFFFF"
+       },
+      {
+      "type": "range",
+      "id": "sub_heading_font_size",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Sub Heading Font Size",
+      "default": 18
+      },
+      {
+      "type": "range",
+      "id": "sub_heading_font_size_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Sub Heading Font Size Mobile",
+      "default": 10
+      },
+      {
+      "type": "range",
+      "id": "sub_heading_font_weight",
+      "min": 100,
+      "max": 900,
+      "step": 100,
+      "unit": "px",
+      "label": "Sub Heading Font Weight",
+      "default": 400
+      },
+      {
+      "type": "header",
+      "content": " Inquiries Title Section Settings"
+      },
+      {
+      "type": "color",
+      "id": "inquiries_title_color",
+      "label": "Title Color",
+      "default": "#FFFFFF"
+       },
+      {
+      "type": "range",
+      "id": "inquiries_title_font_size",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Title Font Size",
+      "default": 15
+      },
+      {
+      "type": "range",
+      "id": "inquiries_title_font_size_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Title Font Size Mobile",
+      "default": 13
+      },
+      {
+      "type": "range",
+      "id": "inquiries_title_font_weight",
+      "min": 100,
+      "max": 900,
+      "step": 100,
+      "unit": "px",
+      "label": "Title Font Weight",
+      "default": 400
+      },
+      {
+      "type": "header",
+      "content": " Inquiries Email Section Settings"
+      },
+      {
+      "type": "color",
+      "id": "inquiries_email_color",
+      "label": "Email Color",
+      "default": "#FFFFFF"
+       },
+       {
+      "type": "color",
+      "id": "email_border_color",
+      "label": "Email Border Color",
+      "default": "#FFFFFF"
+       },
+      {
+      "type": "range",
+      "id": "inquiries_email_font_size",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Email Font Size",
+      "default": 20
+      },
+      {
+      "type": "range",
+      "id": "inquiries_email_font_size_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Email Font Size Mobile",
+      "default": 13
+      },
+      {
+      "type": "range",
+      "id": "inquiries_email_font_weight",
+      "min": 100,
+      "max": 900,
+      "step": 100,
+      "unit": "px",
+      "label": "Email Font Weight",
+      "default": 400
+      },
+       {
+      "type": "range",
+      "id": "inquiries_blocks_margin_bottom",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Title & Email Margin Bottom",
+      "default": 25
+      },
+      {
+      "type": "range",
+      "id": "inquiries_blocks_margin_bottom_mobile",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Title & Email Margin Bottom Mobile",
+      "default": 15
+      },
+      {
+      "type": "header",
+      "content": " Inquiries Block Margin Settings"
+      },
+       {
+      "type": "range",
+      "id": "blocks_margin_top_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Block Margin Top & Bottom",
+      "default": 60
+      },
+      {
+      "type": "range",
+      "id": "blocks_margin_top_bottom_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Block Margin Top & Bottom For Mobile",
+      "default": 30
+      }
+
+
+
+
+
+  ],
+ "blocks"  : [
+             {
+                 "type":"Inquiries",
+                 "name":"Inquiries Block",
+                 "settings":[
+
+
+                            {
+                              "type": "richtext",
+                              "id": "inquiries_title",
+                              "label": "Inquiries Title"
+                             },
+                             {
+                              "type": "richtext",
+                              "id": "inquiries_email",
+                              "label": "Inquiries Description"
+                             }
+
+                             ]
+
+               }
+               ],
+  "presets": [
+    {
+      "name": "Custom Feedback Page"
+    }
+  ]
+}
+{% endschema %}

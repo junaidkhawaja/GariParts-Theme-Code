@@ -1,0 +1,336 @@
+<!-- Section Name: custom-information.liquid -->
+
+<div id="sid-{{ section.id }}">
+  <div class="custom_information">
+    <div class="custom_information_container">
+      <div class="custom_block_container">
+        {% for block in section.blocks %}
+          <div class="information_div">
+            <div class="information_icon">
+              <img src="{{ block.settings.block_icon | img_url: 'master' }}">
+            </div>
+            <div class="information_text">
+              <h2>{{ block.settings.block_heading }}</h2>
+              <h3>{{ block.settings.block_para }}</h3>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  #sid-{{ section.id }} .custom_information{
+    width: 100%;
+    background: {{ section.settings.background_color }};
+  }
+  #sid-{{ section.id }} .custom_information_container{
+    max-width: {{ section.settings.page_size }}px;
+    width:100%; margin: 0 auto;
+    padding: {{ section.settings.top_padding }}px {{ section.settings.right_padding }}px {{ section.settings.bottom_padding }}px {{ section.settings.left_padding }}px;
+  }
+  #sid-{{ section.id }} .custom_block_container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    max-width: 1440px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  #sid-{{ section.id }} .information_div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    width: 25%;
+    background: {{section.settings.block_box_bg_clr}};
+    padding: 20px;
+    border-radius: 10px;
+  }
+
+  #sid-{{ section.id }} img{
+    width: 100%;
+  }
+  #sid-{{ section.id }} .information_icon{
+    display: flex;
+    align-items: center;
+    width: 50px;
+  }
+  #sid-{{ section.id }} .information_text{
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    flex-direction: column;
+  }
+  #sid-{{ section.id }} .information_text h2{
+    font-size: clamp({{ section.settings.block_title_fs_mb }}px, ({{ section.settings.block_title_fs }} / 1440) * 100vw, {{ section.settings.block_title_fs }}px);
+    font-weight:{{section.settings.block_title_fw}};
+    color: {{section.settings.block_title_clr}};
+    text-transform: uppercase;
+  }
+  #sid-{{ section.id }} .information_text h3 p{
+    font-size: clamp({{ section.settings.block_disc_fs_mb }}px, ({{ section.settings.block_disc_fs }} / 1440) * 100vw, {{ section.settings.block_disc_fs }}px);
+    font-weight:{{section.settings.block_disc_fw}};
+    color: {{section.settings.block_disc_clr}};
+  }
+
+
+  @media only screen and (max-width: 990px){
+    #sid-{{ section.id }} .information_div{
+      width: 48%;
+    }
+    #sid-{{ section.id }} .custom_block_container{
+      flex-wrap: wrap;
+    }
+  }
+  @media only screen and (max-width: 767px){
+    #sid-{{ section.id }} .custom_information_container{
+      padding: {{ section.settings.top_padding_mb }}px {{ section.settings.right_padding_mb }}px {{ section.settings.bottom_padding_mb }}px {{ section.settings.left_padding_mb }}px;
+    }
+    #sid-{{ section.id }} .information_div{
+      padding: 10px;
+    }
+    #sid-{{ section.id }} .information_icon{
+      width:45px;
+    }
+  }
+</style>
+
+{% schema %}
+  {
+    "name": "Information Block",
+    "settings": [
+{
+"type": "header",
+"content": "Section Settings"
+},
+{
+  "type": "number",
+  "id": "page_size",
+  "label": "Section Container Size",
+  "default": 1440
+},
+{
+  "type": "color",
+  "id": "background_color",
+  "label": "Background Color",
+  "default": "#ffffff"
+},
+{
+  "type": "range",
+  "id": "top_padding",
+  "min": 0,
+  "max": 100,
+  "step": 1,
+  "unit": "px",
+  "label": "Top Padding",
+  "default": 80
+},
+{
+  "type": "range",
+  "id": "bottom_padding",
+  "min": 0,
+  "max": 100,
+  "step": 1,
+  "unit": "px",
+  "label": "Bottom Padding",
+  "default": 100
+},
+{
+  "type": "range",
+  "id": "right_padding",
+  "min": 0,
+  "max": 100,
+  "step": 1,
+  "unit": "px",
+  "label": "Right Padding",
+  "default":100
+},
+{
+  "type": "range",
+  "id": "left_padding",
+  "min": 0,
+  "max": 100,
+  "step": 1,
+  "unit": "px",
+  "label": "Left Padding",
+  "default": 100
+},
+{
+  "type": "range",
+  "id": "top_padding_mb",
+  "min": 0,
+  "max": 100,
+  "step": 1,
+  "unit": "px",
+  "label": "Top Padding Mobile",
+  "default": 40
+},
+{
+  "type": "range",
+  "id": "bottom_padding_mb",
+  "min": 0,
+  "max": 100,
+  "step": 1,
+  "unit": "px",
+  "label": "Bottom Padding Mobile",
+  "default": 40
+},
+{
+  "type": "range",
+  "id": "right_padding_mb",
+  "min": 0,
+  "max": 100,
+  "step": 1,
+  "unit": "px",
+  "label": "Right Padding Mobile",
+  "default":20
+},
+{
+  "type": "range",
+  "id": "left_padding_mb",
+  "min": 0,
+  "max": 100,
+  "step": 1,
+  "unit": "px",
+  "label": "Left Padding Mobile",
+  "default": 20
+},
+
+{
+"type": "header",
+"content": "Block Box Section Settings"
+},
+{
+"type": "header",
+"content": "Title Section Settings"
+},
+{
+"type": "color",
+"id": "block_box_bg_clr",
+"label": "Box Background Color",
+"default": "#d7d4d4"
+},
+{
+"type": "color",
+"id": "block_title_clr",
+"label": "Title Font Color",
+"default": "#000"
+},
+
+{
+"type": "range",
+"id": "block_title_fs",
+"min": 6,
+"max": 100,
+"step": 1,
+"unit": "px",
+"label": "Font Size",
+"default": 14
+},
+{
+"type": "range",
+"id": "block_title_fs_mb",
+"min": 6,
+"max": 100,
+"step": 1,
+"unit": "px",
+"label": "Font Size For Mobile",
+"default": 12
+},
+{
+"type": "range",
+"id": "block_title_fw",
+"min": 100,
+"max": 900,
+"step": 100,
+"unit": "px",
+"label": "Font Weight",
+"default": 600
+},
+{
+"type": "header",
+"content": "Description Section Settings"
+},
+{
+"type": "color",
+"id": "block_disc_clr",
+"label": "Font Color",
+"default": "#6b6767"
+},
+
+{
+"type": "range",
+"id": "block_disc_fs",
+"min": 6,
+"max": 100,
+"step": 1,
+"unit": "px",
+"label": "Font Size",
+"default": 12
+},
+{
+"type": "range",
+"id": "block_disc_fs_mb",
+"min": 6,
+"max": 100,
+"step": 1,
+"unit": "px",
+"label": "Font Size For Mobile",
+"default": 10
+},
+{
+"type": "range",
+"id": "block_disc_fw",
+"min": 100,
+"max": 900,
+"step": 100,
+"unit": "px",
+"label": "Font Weight",
+"default": 600
+}
+
+
+    ],
+    "blocks":[
+    {
+        "name": "Block",
+      "type": "block",
+      "settings":[
+        {
+  "type": "image_picker",
+  "id": "block_icon",
+  "label": "Icon Image"
+},
+        {
+  "type": "text",
+  "id": "block_heading",
+  "label": "Heading",
+  "default": "Free Delivery"
+},
+        {
+  "type": "richtext",
+  "id": "block_para",
+  "label": "Paragraph"
+}
+
+
+      ]
+    }
+  ],
+    "presets": [
+    {
+      "name": "Custom Information"
+
+    }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
